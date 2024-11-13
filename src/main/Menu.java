@@ -3,6 +3,7 @@ package main;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import java.net.URL;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,9 @@ public class Menu extends JFrame implements ActionListener {
         this.setResizable(true); 
         this.setTitle("Oblivion Souls");
         URL iconURL = Main.class.getResource("/res/icons/Logo.png");
+        if (iconURL != null) {
+            this.setIconImage(new ImageIcon(iconURL).getImage());
+        }
     }
 
     public void startMenu(){
