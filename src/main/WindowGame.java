@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 public class WindowGame extends JFrame{
     
     JFrame window = new JFrame();
+    GamePanel gamePanel = new GamePanel();
     public WindowGame(){
         
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para fechar o programa quando clicarmos em "x"
@@ -17,7 +18,9 @@ public class WindowGame extends JFrame{
             ImageIcon icon = new ImageIcon(iconURL);
             window.setIconImage(icon.getImage());
     }
-
+    public void gameStopThread(){
+        gamePanel.gameThread = null;
+    }
 
     public void gameStartThread(){
         GamePanel gamePanel = new GamePanel(); //Criando o painel

@@ -10,14 +10,21 @@ import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame implements ActionListener {
 
-    JButton BStart = new JButton("Start Game");
-    JButton BExit = new JButton("Exit Game");
+    WindowGame game = new WindowGame();
+    JButton BStart;
+    JButton BExit;
 
+    private void actionsButtons() {
+        BStart = new JButton("Start Game");
+        BExit = new JButton("Exit Game");
+        BStart.addActionListener(this);
+        BExit.addActionListener(this);
+    }
+    
     private JPanel MenuPanel() {
         JPanel panel = new JPanel();
         panel.add(BStart);
         panel.add(BExit);
-
         return panel;
     }
 
@@ -33,6 +40,7 @@ public class Menu extends JFrame implements ActionListener {
     }
 
     public void startMenu(){
+        this.actionsButtons();
         this.add(MenuPanel());
         this.setLocationRelativeTo(null); // A janela será exibida no centro da tela. Sem especificar a localização
         this.setVisible(true); // Para poder ver a tela.
@@ -44,6 +52,16 @@ public class Menu extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
+        if (e.getSource() == BStart){
+            game.gameStartThread();
+        }
+        if (e.getSource() == BExit){
+            game.gameStopThread();
+            System.exit(0);
+        }
+
     }
 
     
