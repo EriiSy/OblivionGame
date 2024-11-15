@@ -9,12 +9,16 @@ import java.net.URL;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    final int originalTileSize = 16; // tamanho dos NPC'S, Personagens entre outros
+    final int originalTileSize = 32; // tamanho dos NPC'S, Personagens entre outros
+    final int originalTileSizeNPCs = 16; // tamanho dos NPC'S, Personagens entre outros
     final int scale = 5;  // Será utilizado para aumentar o tamanho dos Sprites
 
     public final int tileSize = originalTileSize * scale; // tamanho real que será mostrado na tela
+    public final int tileSizePlayer = originalTileSizeNPCs * scale; // tamanho real que será mostrado na tela
     final int maxScreenColumns = 16; // Quantidade de colunas a serem exibidas na tela
     final int maxScreenRow = 12; // Quantidade de linhas a serem exibidas na tela
+    final int screenWidthPlayer = tileSizePlayer * maxScreenColumns; // tamanho da  largura da tela
+    final int screenHeightPlayer = tileSizePlayer * maxScreenRow;  // tamanho da altura da tela
     final int screenWidth = tileSize * maxScreenColumns; // tamanho da  largura da tela
     final int screenHeight = tileSize * maxScreenRow;  // tamanho da altura da tela
 

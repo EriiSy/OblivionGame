@@ -30,7 +30,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         x = 100;
-        y = 710;
+        y = 790;
         speed = 3;
         direction = "down";
     }
@@ -104,8 +104,8 @@ public class Player extends Entity {
             y += movement.velocityY;
             movement.updateFall();
 
-            if (y >= 710) {
-                y = 710;
+            if (y >= 790) {
+                y = 790;
                 movement.stopJump();
             } else if (movement.velocityY > 0) {
                 direction = "down";
@@ -275,8 +275,8 @@ public class Player extends Entity {
             image = getDefaultImage();
         }
     
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        g2.drawImage(effects, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, x, y, gp.tileSizePlayer, gp.tileSizePlayer, null);
+        g2.drawImage(effects, x, y, gp.tileSizePlayer, gp.tileSizePlayer, null);
     }
     
 

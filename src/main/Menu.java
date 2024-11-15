@@ -88,7 +88,7 @@ public class Menu extends JFrame implements ActionListener {
         layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
         // Adiciona a imagem de fundo
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/example.png");
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/windriseRose.png");
         ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
         Image backgroundImage = backgroundImageIcon.getImage();
         JLabel background = new JLabel() {
