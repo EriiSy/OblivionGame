@@ -30,7 +30,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         x = 100;
-        y = 100;
+        y = 710;
         speed = 3;
         direction = "down";
     }
@@ -104,8 +104,8 @@ public class Player extends Entity {
             y += movement.velocityY;
             movement.updateFall();
 
-            if (y >= 500) {
-                y = 500;
+            if (y >= 710) {
+                y = 710;
                 movement.stopJump();
             } else if (movement.velocityY > 0) {
                 direction = "down";

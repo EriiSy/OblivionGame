@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // é usado para fazer com que o GamePanel receba de maneira "focada" o input da tecla/
 
         // Carrega a imagem de fundo
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/example.png");
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/tileset.png");
         if (backgroundURL != null) {
             backgroundImage = new ImageIcon(backgroundURL).getImage();
         }

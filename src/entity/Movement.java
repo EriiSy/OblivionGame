@@ -7,7 +7,7 @@ public class Movement {
     private boolean isMovingRight = true;
     double velocityY = 0;
     private final double gravity = 0.7;
-    private final double jumpStrength = 10;
+    private final double jumpStrength = 12;
     double jumpCount = 0;
 
     public boolean isJumping() {
