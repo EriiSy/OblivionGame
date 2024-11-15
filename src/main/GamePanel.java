@@ -4,6 +4,7 @@ import entity.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -22,38 +23,37 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
+    Image backgroundImage;
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 5;
-
-    public GamePanel(){ //Construtor
+    public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // definir o tamanho do painel;
-        this.setBackground(Color.gray);
-        this.setDoubleBuffered(true); //Todo o desenho. A partir deste componente será feito em um buffer de pintura fora da tela.
+        this.setLayout(null); // Usar layout nulo para posicionamento absoluto
+        this.setDoubleBuffered(true); // Todo o desenho. A partir deste componente será feito em um buffer de pintura fora da tela.
         this.addKeyListener(keyH); // para que o Painel reconheça os inputs das teclas
         this.setFocusable(true); // é usado para fazer com que o GamePanel receba de maneira "focada" o input da tecla/
+
+        // Carrega a imagem de fundo
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/example.png");
+        if (backgroundURL != null) {
+            backgroundImage = new ImageIcon(backgroundURL).getImage();
+        }
     }
 
-    public void startGameThread (){
+    public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
     @Override
     public void run() {
-
-        double drawInterval = 1000000000/FPS; // 0.01666 segundos
+        double drawInterval = 1000000000 / FPS; // 0.01666 segundos
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
         long timer = 0;
 
-
-        while (gameThread != null){
-
+        while (gameThread != null) {
             currentTime = System.nanoTime();
-
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
             lastTime = currentTime;
@@ -64,22 +64,28 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
 
-            if ( timer >= 1000000000){
-//                System.out.println("FPS " + drawCount);
+            if (timer >= 1000000000) {
                 timer = 0;
             }
         }
     }
 
-    public void update(){  // método de atualização de quadros dos personagens
+    public void update() {  // método de atualização de quadros dos personagens
         player.update();
     }
 
-    public void paintComponent(Graphics g){
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2  = (Graphics2D)g; // Permite um controle mais sofisticado da Geometria 2D
+        Graphics2D g2 = (Graphics2D) g; // Permite um controle mais sofisticado da Geometria 2D
 
+        // Desenha a imagem de fundo
+        if (backgroundImage != null) {
+            g2.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        }
+
+        // Desenha o jogador
         player.draw(g2);
 
         g2.dispose(); // Descarta esse contexto gráfico e libere quaisquer recursos do sistema que ele esteja usando.
