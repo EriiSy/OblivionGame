@@ -25,13 +25,13 @@ public class Menu extends JFrame implements ActionListener {
     final int screenHeight = 600;
 
     private void actionsButtons() {
-        BStart = new JButton("< Start Game >");
-        BExit = new JButton("< Exit Game >");
-        BOptions = new JButton("< Options >");
-        BOptionsKeys = new JButton("< Keyboard >");
-        BOptionsSound = new JButton("< Sounds >");
-        BOptionsGraphics = new JButton(" < Video >");
-        BOptionsBack = new JButton("< Back >");
+        BStart = new JButton("Start Game");
+        BExit = new JButton("Exit Game");
+        BOptions = new JButton("Options");
+        BOptionsKeys = new JButton("Keyboard");
+        BOptionsSound = new JButton("Sounds");
+        BOptionsGraphics = new JButton("Video");
+        BOptionsBack = new JButton("Back");
         BStart.addActionListener(this);
         BExit.addActionListener(this);
         BOptions.addActionListener(this);
