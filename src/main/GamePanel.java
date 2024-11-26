@@ -5,6 +5,7 @@ import entity.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -27,7 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
-    Image backgroundImage;
+    Image combinedBackgroundImage;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight)); // definir o tamanho do painel;
@@ -36,10 +37,25 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH); // para que o Painel reconheça os inputs das teclas
         this.setFocusable(true); // é usado para fazer com que o GamePanel receba de maneira "focada" o input da tecla/
 
-        // Carrega a imagem de fundo
+        // Carrega as imagens de fundo
         URL backgroundURL = Main.class.getResource("/res/backgrounds/tileset.png");
-        if (backgroundURL != null) {
-            backgroundImage = new ImageIcon(backgroundURL).getImage();
+        URL backgroundURL1 = Main.class.getResource("/res/backgrounds/background_0.png");
+        URL backgroundURL2 = Main.class.getResource("/res/backgrounds/background_1.png");
+        URL backgroundURL3 = Main.class.getResource("/res/backgrounds/background_2.png");
+        if (backgroundURL != null && backgroundURL1 != null && backgroundURL2 != null && backgroundURL3 != null) {
+            Image mainBackgroundImage = new ImageIcon(backgroundURL).getImage();
+            Image backgroundImage1 = new ImageIcon(backgroundURL1).getImage();
+            Image backgroundImage2 = new ImageIcon(backgroundURL2).getImage();
+            Image backgroundImage3 = new ImageIcon(backgroundURL3).getImage();
+
+            // Combina as imagens de fundo em uma única imagem
+            combinedBackgroundImage = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics g = combinedBackgroundImage.getGraphics();
+            g.drawImage(backgroundImage3, 0, 0, screenWidth, screenHeight, null);
+            g.drawImage(backgroundImage2, 0, 0, screenWidth, screenHeight, null);
+            g.drawImage(backgroundImage1, 0, 0, screenWidth, screenHeight, null);
+            g.drawImage(mainBackgroundImage, 0, 0, screenWidth, screenHeight, null);
+            g.dispose();
         }
     }
 
@@ -84,9 +100,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g; // Permite um controle mais sofisticado da Geometria 2D
 
-        // Desenha a imagem de fundo
-        if (backgroundImage != null) {
-            g2.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        // Desenha a imagem de fundo combinada
+        if (combinedBackgroundImage != null) {
+            g2.drawImage(combinedBackgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
 
         // Desenha o jogador

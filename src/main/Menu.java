@@ -1,77 +1,32 @@
 package main;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import java.net.URL;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.awt.CardLayout;
 
-public class Menu extends JFrame implements ActionListener {
-    private JPanel panel = new JPanel();
+public class Menu extends JFrame {
+    private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
-    JButton BStart;
-    JButton BExit;
-    JButton BOptions, BOptionsKeys, BOptionsSound, BOptionsGraphics, BOptionsBack;
-    final int screenWidth = 800;
-    final int screenHeight = 600;
+    MenuPanel mp = new MenuPanel(this);
+    ActionsJFrame actions = new ActionsJFrame(mp);
 
     private void actionsButtons() {
-        BStart = new JButton("Start Game");
-        BExit = new JButton("Exit Game");
-        BOptions = new JButton("Options");
-        BOptionsKeys = new JButton("Keyboard");
-        BOptionsSound = new JButton("Sounds");
-        BOptionsGraphics = new JButton("Video");
-        BOptionsBack = new JButton("Back");
-        BStart.addActionListener(this);
-        BExit.addActionListener(this);
-        BOptions.addActionListener(this);
-        BOptionsKeys.addActionListener(this);
-        BOptionsSound.addActionListener(this);
-        BOptionsGraphics.addActionListener(this);
-        BOptionsBack.addActionListener(this);
-    }
-
-    private JPanel MenuPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, screenHeight / 2 - 50));
-        panel.setOpaque(false); // Torna o painel transparente
-        panel.add(Box.createVerticalGlue()); // Espaço flexível acima
-        panel.add(BStart);
-        panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BExit);
-        panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptions);
-        panel.add(Box.createVerticalGlue()); // Espaço flexível abaixo
-        return panel;
-    }
-
-    private JPanel MenuOptionsPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, screenHeight / 2 - 50));
-        panel.setOpaque(false); // Torna o painel transparente
-        panel.add(Box.createVerticalGlue()); // Espaço flexível acima
-        panel.add(BOptionsGraphics);
-        panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptionsSound);
-        panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptionsKeys);
-        panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptionsBack);
-        panel.add(Box.createVerticalGlue()); // Espaço flexível abaixo
-        return panel;
+        actions.Buttons();
+        actions.SizeIconBotton();
+        actions.ButtonsMouseListener();
+        actions.ActionListenerButtons();
     }
 
     public Menu() {
-        this.setSize(screenWidth, screenHeight);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para fechar o programa quando clicarmos em "x"
+        this.setSize(actions.screenWidth, actions.screenHeight);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
         this.setTitle("Oblivion Souls");
         URL iconURL = Main.class.getResource("/res/icons/Logo.png");
@@ -83,62 +38,43 @@ public class Menu extends JFrame implements ActionListener {
     public void startMenu() {
         this.actionsButtons();
 
-        // Cria um JLayeredPane para organizar os componentes
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        layeredPane.setPreferredSize(new Dimension(actions.screenWidth, actions.screenHeight));
 
-        // Adiciona a imagem de fundo
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/windriseRose.png");
-        ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
-        Image backgroundImage = backgroundImageIcon.getImage();
-        JLabel background = new JLabel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
-        background.setBounds(0, 0, screenWidth, screenHeight);
-        layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/MenuB.jpg");
+        if (backgroundURL != null) {
+            ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
+            Image backgroundImage = backgroundImageIcon.getImage();
+            JLabel background = new JLabel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+            };
+            background.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
+            layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
+        } else {
+            System.out.println("Background image not found: /res/backgrounds/MenuB.jpg");
+        }
 
-        // Configura o painel com os botões
-        panel.setBounds(0, 0, screenWidth, screenHeight);
-        panel.setOpaque(false); // Torna o painel transparente
-        layeredPane.add(MenuPanel(panel), JLayeredPane.PALETTE_LAYER);
+        // Adiciona os painéis ao CardLayout
+        panel.add(mp.MenuMainPanel(new JPanel()), "MenuMain");
+        panel.add(mp.MenuOptionsPanel(new JPanel()), "MenuOptions");
 
-        // Adiciona o JLayeredPane ao JFrame
+        panel.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
+        panel.setOpaque(false); // Certifica que o painel é transparente
+
+        layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
+
         this.add(layeredPane);
-        this.pack(); // Ajusta o tamanho da janela aos componentes
-        this.setLocationRelativeTo(null); // A janela será exibida no centro da tela
-        this.setVisible(true); // Para poder ver a tela
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.startMenu();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == BStart) {
-            game.gameStartThread();
-        }
-        if (e.getSource() == BExit) {
-            game.gameStopThread();
-            System.exit(0);
-        }
-        if (e.getSource() == BOptions) {
-            panel.removeAll();
-            MenuOptionsPanel(panel);
-            panel.revalidate();
-            panel.repaint();
-        }
-
-        if (e.getSource() == BOptionsBack) {
-            panel.removeAll();
-            MenuPanel(panel);
-            panel.revalidate();
-            panel.repaint();
-        }
     }
 }
