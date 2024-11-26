@@ -1,12 +1,11 @@
 package main;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import java.net.URL;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -18,59 +17,43 @@ import java.awt.Graphics;
 public class Menu extends JFrame implements ActionListener {
     private JPanel panel = new JPanel();
     WindowGame game = new WindowGame();
-    JButton BStart;
-    JButton BExit;
-    JButton BOptions, BOptionsKeys, BOptionsSound, BOptionsGraphics, BOptionsBack;
-    final int screenWidth = 800;
-    final int screenHeight = 600;
+    ActionsJFrame actions = new ActionsJFrame();
+    
 
     private void actionsButtons() {
-        BStart = new JButton("Start Game");
-        BExit = new JButton("Exit Game");
-        BOptions = new JButton("Options");
-        BOptionsKeys = new JButton("Keyboard");
-        BOptionsSound = new JButton("Sounds");
-        BOptionsGraphics = new JButton("Video");
-        BOptionsBack = new JButton("Back");
-        BStart.addActionListener(this);
-        BExit.addActionListener(this);
-        BOptions.addActionListener(this);
-        BOptionsKeys.addActionListener(this);
-        BOptionsSound.addActionListener(this);
-        BOptionsGraphics.addActionListener(this);
-        BOptionsBack.addActionListener(this);
+        actions.Buttons(panel);
     }
 
     private JPanel MenuPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, screenHeight / 2 - 50));
-        panel.setOpaque(false); // Torna o painel transparente
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, actions.screenHeight / 2 - 50));
         panel.add(Box.createVerticalGlue()); // Espaço flexível acima
-        panel.add(BStart);
+        panel.add(Box.createVerticalGlue()); // Espaço flexível acima
+        panel.add(actions.BStart);
         panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BExit);
+        panel.add(actions.BExit);
         panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptions);
+        panel.add(actions.BOptions);
         panel.add(Box.createVerticalGlue()); // Espaço flexível abaixo
         return panel;
     }
 
     private JPanel MenuOptionsPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, screenHeight / 2 - 50));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, actions.screenHeight / 2 - 50));
         panel.setOpaque(false); // Torna o painel transparente
         panel.add(Box.createVerticalGlue()); // Espaço flexível acima
-        panel.add(BOptionsGraphics);
+        panel.add(actions.BOptionsGraphics);
         panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptionsSound);
+        panel.add(actions.BOptionsSound);
         panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptionsKeys);
+        panel.add(actions.BOptionsKeys);
         panel.add(Box.createVerticalStrut(10)); // Espaço fixo entre os botões
-        panel.add(BOptionsBack);
+        panel.add(actions.BOptionsBack);
         panel.add(Box.createVerticalGlue()); // Espaço flexível abaixo
         return panel;
     }
 
     public Menu() {
-        this.setSize(screenWidth, screenHeight);
+        this.setSize(actions.screenWidth, actions.screenHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Para fechar o programa quando clicarmos em "x"
         this.setResizable(true);
         this.setTitle("Oblivion Souls");
@@ -85,7 +68,7 @@ public class Menu extends JFrame implements ActionListener {
 
         // Cria um JLayeredPane para organizar os componentes
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        layeredPane.setPreferredSize(new Dimension(actions.screenWidth, actions.screenHeight));
 
         // Adiciona a imagem de fundo
         URL backgroundURL = Main.class.getResource("/res/backgrounds/windriseRose.png");
@@ -98,11 +81,11 @@ public class Menu extends JFrame implements ActionListener {
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         };
-        background.setBounds(0, 0, screenWidth, screenHeight);
+        background.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
         layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
 
         // Configura o painel com os botões
-        panel.setBounds(0, 0, screenWidth, screenHeight);
+        panel.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
         panel.setOpaque(false); // Torna o painel transparente
         layeredPane.add(MenuPanel(panel), JLayeredPane.PALETTE_LAYER);
 
@@ -120,21 +103,21 @@ public class Menu extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == BStart) {
+        if (e.getSource() == actions.BStart) {
             game.gameStartThread();
         }
-        if (e.getSource() == BExit) {
+        if (e.getSource() == actions.BExit) {
             game.gameStopThread();
             System.exit(0);
         }
-        if (e.getSource() == BOptions) {
+        if (e.getSource() == actions.BOptions) {
             panel.removeAll();
             MenuOptionsPanel(panel);
             panel.revalidate();
             panel.repaint();
         }
 
-        if (e.getSource() == BOptionsBack) {
+        if (e.getSource() == actions.BOptionsBack) {
             panel.removeAll();
             MenuPanel(panel);
             panel.revalidate();

@@ -15,6 +15,7 @@ public class Player extends Entity {
     private Attack normalAttack;
     private Interact interaction;
     private SpriteHandler spriteHandler;
+    private final int size_Y = 610;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -30,7 +31,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         x = 100;
-        y = 790;
+        y = size_Y;
         speed = 3;
         direction = "down";
     }
@@ -104,8 +105,8 @@ public class Player extends Entity {
             y += movement.velocityY;
             movement.updateFall();
 
-            if (y >= 790) {
-                y = 790;
+            if (y >= size_Y) {
+                y = size_Y;
                 movement.stopJump();
             } else if (movement.velocityY > 0) {
                 direction = "down";
