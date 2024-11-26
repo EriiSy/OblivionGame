@@ -19,6 +19,8 @@ public class MenuPanel {
         panel.add(Box.createVerticalStrut(20));
         panel.add(menu.actions.BOptions);
         panel.add(Box.createVerticalStrut(20));
+        panel.add(menu.actions.BCredits);
+        panel.add(Box.createVerticalStrut(20));
         panel.add(menu.actions.BExit);
         return panel;
     }
