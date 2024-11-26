@@ -6,15 +6,15 @@ import java.awt.FlowLayout;
 
 public class MenuPanel {
     private Menu menu;
-    JPanel panel = new JPanel();
 
     public MenuPanel(Menu menu) {
         this.menu = menu;
     }
 
     protected JPanel MenuMainPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 10));
-        panel.add(Box.createVerticalStrut(20));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        panel.setOpaque(false); // Certifica que o painel é transparente
+        panel.add(Box.createVerticalStrut(100));
         panel.add(menu.actions.BStart);
         panel.add(Box.createVerticalStrut(20));
         panel.add(menu.actions.BOptions);
@@ -24,8 +24,9 @@ public class MenuPanel {
     }
 
     protected JPanel MenuOptionsPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, -1000, 10));
-        panel.add(Box.createVerticalStrut(20));
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        panel.setOpaque(false); // Certifica que o painel é transparente
+        panel.add(Box.createVerticalStrut(100));
         panel.add(menu.actions.BOptionsKeys);
         panel.add(Box.createVerticalStrut(20));
         panel.add(menu.actions.BOptionsSound);
