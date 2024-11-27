@@ -14,9 +14,14 @@ public class SizeIconsMenu {
     private static final Color BUTTON_FOREGROUND_COLOR = new Color(170, 140, 177);
     private static final Font BUTTON_FONT = new Font("Monocraft", Font.BOLD, 20);
 
-    MenuMainPanel mmp = new MenuMainPanel();
-    MenuOptionsPanel mop = new MenuOptionsPanel();
+    MenuMainPanel mmp;
+    MenuOptionsPanel mop;
     resizeIcons ri = new resizeIcons();
+
+    public SizeIconsMenu(MenuMainPanel mmp, MenuOptionsPanel mop) {
+        this.mmp = mmp;
+        this.mop = mop;
+    }
 
     public void SizeIconBottonMainMenuPanel() {
         for (JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions}) {

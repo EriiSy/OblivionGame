@@ -22,9 +22,11 @@ public class Menu extends JFrame {
     private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
     MenuPanel mp = new MenuPanel(this);
+    MenuMainPanel mmp = new MenuMainPanel();
+    MenuOptionsPanel mop = new MenuOptionsPanel();
     ActionsJFrame actions = new ActionsJFrame(mp);
     resizeIcons resize = new resizeIcons();
-    SizeIconsMenu size = new SizeIconsMenu();
+    SizeIconsMenu size = new SizeIconsMenu(mmp, mop);
 
     public Menu() {
         this.setSize(screenWidth, screenHeight);

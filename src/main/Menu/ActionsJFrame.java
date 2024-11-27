@@ -19,21 +19,12 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     MenuMainPanel mmp = new MenuMainPanel();
     MenuOptionsPanel mop = new MenuOptionsPanel();
     resizeIcons resize = new resizeIcons();
-    SizeIconsMenu size = new SizeIconsMenu();
+    SizeIconsMenu size = new SizeIconsMenu(mmp, mop);
 
     public ActionsJFrame(MenuPanel mp) {
         this.mp = mp;
     }
 
-    
-    protected void ButtonsActionsMenuMainPanel() {
-        size.SizeIconBottonMainMenuPanel();
-    }
-    
-    protected void ButtonsActionsMenuOptionsPanel() {
-        size.SizeIconBottonMenuOptionsPanel();
-    }
-    
     protected void ButtonsMouseListenerMenuMainPanel() {
         for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions}) {
             button.addMouseListener(new MouseAdapter() {
@@ -41,18 +32,18 @@ public class ActionsJFrame extends JFrame implements ActionListener {
                 public void mouseEntered(MouseEvent e) {
                     button.setForeground(Color.GRAY);
                 }
-                
+
                 @Override
                 public void mouseExited(MouseEvent e) {
                     button.setForeground(new Color(170, 140, 177));
                 }
-                
+
                 @Override
                 public void mousePressed(MouseEvent e) {
                     button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50));
                     button.setIconTextGap(-10);
                 }
-                
+
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
@@ -61,7 +52,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             });
         }
     }
-    
+
     protected void ButtonsMouseListenerMenuOptionsPanel() {
         for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
             button.addMouseListener(new MouseAdapter() {
@@ -89,7 +80,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             });
         }
     }
-    
+
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions, mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
             button.addActionListener(this);
@@ -103,7 +94,6 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         ActionListenerButtons();
         System.out.println("Actions buttons initialized");
     }
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
