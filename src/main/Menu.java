@@ -41,7 +41,7 @@ public class Menu extends JFrame {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(actions.screenWidth, actions.screenHeight));
 
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/MenuB.jpg");
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
         if (backgroundURL != null) {
             ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
             Image backgroundImage = backgroundImageIcon.getImage();
@@ -55,7 +55,7 @@ public class Menu extends JFrame {
             background.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
             layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
         } else {
-            System.out.println("Background image not found: /res/backgrounds/MenuB.jpg");
+            System.out.println("Background image not found: /res/backgrounds/OblivionSoulsStart.jpg");
         }
 
         // Adiciona os painéis ao CardLayout

@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.JPanel;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 
 public class MenuPanel {
@@ -12,13 +13,15 @@ public class MenuPanel {
     }
 
     protected JPanel MenuMainPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
         panel.setOpaque(false); // Certifica que o painel é transparente
-        panel.add(Box.createVerticalStrut(100));
+        panel.add(Box.createVerticalStrut(10));
         panel.add(menu.actions.BStart);
-        panel.add(Box.createVerticalStrut(20));
+        panel.add(Box.createVerticalStrut(10));
         panel.add(menu.actions.BOptions);
-        panel.add(Box.createVerticalStrut(20));
+        panel.add(Box.createVerticalStrut(10));
         panel.add(menu.actions.BExit);
         return panel;
     }
