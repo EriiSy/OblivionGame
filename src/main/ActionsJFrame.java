@@ -19,9 +19,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     final int screenWidth = 1920;
     final int screenHeight = 1080;
-    JButton BStart, BExit, BBack;
+    JButton BStart, BExit, BBack, BCredits;
     JButton BOptions, BOptionsKeys, BOptionsSound, BOptionsGraphics, BOptionsBack;
-    JButton BCredits;
     JLabel LCredits, LCreditsDeveloper, LCreditsArt, LCreditsAdvisor, LCreditsSpecialThanks;
 
     public ActionsJFrame(MenuPanel mp) {
@@ -32,6 +31,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         BStart = new JButton("START GAME");
         BExit = new JButton("EXIT GAME");
         BOptions = new JButton("OPTIONS");
+        BCredits = new JButton("CREDITS");
         BOptionsKeys = new JButton("KEYBOARD");
         BOptionsSound = new JButton("SOUNDS");
         BOptionsGraphics = new JButton("VIDEO");
@@ -39,7 +39,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     }
 
     protected void SizeIconBotton() {
-        for (JButton button : new JButton[]{BStart, BExit, BOptions, BOptionsKeys, 
+        for (JButton button : new JButton[]{BStart, BExit, BOptions, BCredits, BOptionsKeys, 
             BOptionsSound, BOptionsGraphics, BOptionsBack}) {
             button.setIcon(resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
             button.setRolloverIcon(resizeIcon("/res/bottons/LightBlue/Hover.png", 200, 50));
@@ -70,7 +70,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     }
 
     protected void ButtonsMouseListener() {
-        for (final JButton button : new JButton[]{BStart, BExit, BOptions, BOptionsKeys, 
+        for (final JButton button : new JButton[]{BStart, BExit, BOptions, BCredits, BOptionsKeys, 
             BOptionsSound, BOptionsGraphics, BOptionsBack}) {
             button.addMouseListener(new MouseAdapter() {
                 @Override
@@ -99,7 +99,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     }
 
     protected void ActionListenerButtons() {
-        for (final JButton button : new JButton[]{BStart, BExit, BOptions, BOptionsKeys, 
+        for (final JButton button : new JButton[]{BStart, BExit, BOptions, BCredits, BOptionsKeys, 
             BOptionsSound, BOptionsGraphics, BOptionsBack}) {
             button.addActionListener(this);
         }
@@ -111,6 +111,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         if (e.getSource() == BStart) {
             game.gameStartThread();
         } else if (e.getSource() == BExit) {
+            System.exit(0);
+        } else if (e.getSource() == BCredits) {
             System.exit(0);
         } else if (e.getSource() == BOptions) {
             cl.show(panel, "MenuOptions");
