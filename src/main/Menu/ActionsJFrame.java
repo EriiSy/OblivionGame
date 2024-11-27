@@ -20,95 +20,90 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     MenuOptionsPanel mop = new MenuOptionsPanel();
     resizeIcons resize = new resizeIcons();
     SizeIconsMenu size = new SizeIconsMenu();
-    ActionsJFrame actions = new ActionsJFrame(mp);
 
-
-    
     public ActionsJFrame(MenuPanel mp) {
         this.mp = mp;
     }
 
-
-    protected void actionsButtons() {
-        mp.MenuMainPanel(panel);
-        size.SizeIconBottonMainMenuPanel();
-        actions.ButtonsMouseListenerMenuMainPanel();
-        actions.ActionListenerButtons();
-        System.out.println("Actions buttons initialized");
-    }
-
-    protected void ButtonsActionsMenuMainPanel(){
+    
+    protected void ButtonsActionsMenuMainPanel() {
         size.SizeIconBottonMainMenuPanel();
     }
-
-    protected void ButtonsActionsMenuOptionsPanel(){
+    
+    protected void ButtonsActionsMenuOptionsPanel() {
         size.SizeIconBottonMenuOptionsPanel();
     }
-
+    
     protected void ButtonsMouseListenerMenuMainPanel() {
         for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions}) {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    button.setForeground(Color.GRAY); 
+                    button.setForeground(Color.GRAY);
                 }
-
+                
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    button.setForeground(new Color(170,140,177)); 
+                    button.setForeground(new Color(170, 140, 177));
                 }
-
+                
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50)); 
-                    
-                    button.setIconTextGap(-10); 
+                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50));
+                    button.setIconTextGap(-10);
                 }
-
+                
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50)); 
-                    button.setIconTextGap(0); 
+                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
+                    button.setIconTextGap(0);
                 }
             });
         }
     }
+    
+    protected void ButtonsMouseListenerMenuOptionsPanel() {
+        for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    button.setForeground(Color.GRAY);
+                }
 
-    protected void ButtonsMouseListenerMenuOptionsPanel(){
-        for (JButton button : new JButton[]{mop.BOptionsKeys,mop.BOptionsSounds, 
-            mop.BOptionsGraphics, mop.BOptionsBack}){
-                button.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        button.setForeground(Color.GRAY); 
-                    }
-    
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                        button.setForeground(new Color(170,140,177)); 
-                    }
-    
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50)); 
-                        button.setIconTextGap(-10); 
-                    }
-    
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50)); 
-                        button.setIconTextGap(0); 
-                    }
-                });
-            }
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    button.setForeground(new Color(170, 140, 177));
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50));
+                    button.setIconTextGap(-10);
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
+                    button.setIconTextGap(0);
+                }
+            });
+        }
     }
-
+    
     protected void ActionListenerButtons() {
-        for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions, mop.BOptionsKeys, 
-            mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
+        for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions, mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
             button.addActionListener(this);
         }
     }
+
+    protected void actionsButtons() {
+        mp.MenuMainPanel(panel);
+        size.SizeIconBottonMainMenuPanel();
+        ButtonsMouseListenerMenuMainPanel();
+        ActionListenerButtons();
+        System.out.println("Actions buttons initialized");
+    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
