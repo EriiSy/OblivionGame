@@ -11,7 +11,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
     final int originalTileSize = 32; // tamanho dos NPC'S, Personagens entre outros
-    final int originalTileSizeNPCs = 16; // tamanho dos NPC'S, Personagens entre outros
+    final int originalTileSizeNPCs = 32; // tamanho dos NPC'S, Personagens entre outros
     final int scale = 5;  // Será utilizado para aumentar o tamanho dos Sprites
 
     public final int tileSize = originalTileSize * scale; // tamanho real que será mostrado na tela
@@ -38,22 +38,22 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // é usado para fazer com que o GamePanel receba de maneira "focada" o input da tecla/
 
         // Carrega as imagens de fundo
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/tileset.png");
-        URL backgroundURL1 = Main.class.getResource("/res/backgrounds/background_0.png");
-        URL backgroundURL2 = Main.class.getResource("/res/backgrounds/background_1.png");
-        URL backgroundURL3 = Main.class.getResource("/res/backgrounds/background_2.png");
-        if (backgroundURL != null && backgroundURL1 != null && backgroundURL2 != null && backgroundURL3 != null) {
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/BackgroundFase.png");
+        // URL backgroundURL1 = Main.class.getResource("/res/backgrounds/background_0.png");
+        // URL backgroundURL2 = Main.class.getResource("/res/backgrounds/background_1.png");
+        // URL backgroundURL3 = Main.class.getResource("/res/backgrounds/background_2.png");
+        if (backgroundURL != null) { // && backgroundURL1 != null && backgroundURL2 != null && backgroundURL3 != null
             Image mainBackgroundImage = new ImageIcon(backgroundURL).getImage();
-            Image backgroundImage1 = new ImageIcon(backgroundURL1).getImage();
-            Image backgroundImage2 = new ImageIcon(backgroundURL2).getImage();
-            Image backgroundImage3 = new ImageIcon(backgroundURL3).getImage();
+            // Image backgroundImage1 = new ImageIcon(backgroundURL1).getImage();
+            // Image backgroundImage2 = new ImageIcon(backgroundURL2).getImage();
+            // Image backgroundImage3 = new ImageIcon(backgroundURL3).getImage();
 
             // Combina as imagens de fundo em uma única imagem
             combinedBackgroundImage = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
             Graphics g = combinedBackgroundImage.getGraphics();
-            g.drawImage(backgroundImage3, 0, 0, screenWidth, screenHeight, null);
-            g.drawImage(backgroundImage2, 0, 0, screenWidth, screenHeight, null);
-            g.drawImage(backgroundImage1, 0, 0, screenWidth, screenHeight, null);
+            // g.drawImage(backgroundImage3, 0, 0, screenWidth, screenHeight, null);
+            // g.drawImage(backgroundImage2, 0, 0, screenWidth, screenHeight, null);
+            // g.drawImage(backgroundImage1, 0, 0, screenWidth, screenHeight, null);
             g.drawImage(mainBackgroundImage, 0, 0, screenWidth, screenHeight, null);
             g.dispose();
         }
