@@ -11,6 +11,7 @@ public class MenuMainPanel extends JPanel {
     public MenuMainPanel() {
         this.setLayout(new FlowLayout());
         Buttons();
+        this.setOpaque(false);
         configureButtons();
         addButtons();
     }

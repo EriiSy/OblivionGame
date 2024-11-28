@@ -14,6 +14,7 @@ public class MenuOptionsPanel extends JPanel {
     public MenuOptionsPanel() {
         this.setLayout(new FlowLayout());
         Buttons();
+        this.setOpaque(false);
         configureButtons();
         addButtons();
     }
