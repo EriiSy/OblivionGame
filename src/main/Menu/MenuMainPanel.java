@@ -2,11 +2,17 @@ package main.Menu;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.FlowLayout;
 
-public class MenuMainPanel {  
-    protected JPanel PMain;
+public class MenuMainPanel extends JPanel {
     public JButton BStart, BExit, BOptions;
-    
+
+    public MenuMainPanel() {
+        this.setLayout(new FlowLayout());
+        Buttons();
+        addButtons();
+    }
+
     protected void Buttons() {
         BStart = new JButton("START GAME");
         BExit = new JButton("EXIT GAME");
@@ -15,19 +21,7 @@ public class MenuMainPanel {
 
     protected void addButtons() {
         for (JButton button : new JButton[]{BStart, BExit, BOptions}) {
-            PMain.add(button);
+            this.add(button);
         }
-    }
-    
-    protected void removeButtons() {
-        for (JButton button : new JButton[]{BStart, BExit, BOptions}) {
-            PMain.remove(button);
-        }
-    }
-
-    public MenuMainPanel() {
-        PMain = new JPanel(); // Inicializa o PMain
-        this.Buttons();
-        this.addButtons();
     }
 }

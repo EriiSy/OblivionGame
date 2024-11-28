@@ -1,8 +1,6 @@
 package main.Menu;
 
-
 import javax.swing.JPanel;
-
 import main.Main;
 import main.WindowGame;
 import main.Menu.RenderIcons.*;
@@ -16,17 +14,14 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.CardLayout;
 
-public class Menu extends JFrame { 
+public class Menu extends JFrame {
     final int screenWidth = 1920;
     final int screenHeight = 1080;
     private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
-    MenuPanel mp = new MenuPanel(this);
-    MenuMainPanel mmp = new MenuMainPanel();
-    MenuOptionsPanel mop = new MenuOptionsPanel();
+    MenuPanel mp = new MenuPanel();
     ActionsJFrame actions = new ActionsJFrame(mp);
-    resizeIcons resize = new resizeIcons();
-    IconsMenuRender size = new IconsMenuRender(mmp, mop);
+    IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel());
 
     public Menu() {
         this.setSize(screenWidth, screenHeight);
@@ -61,12 +56,12 @@ public class Menu extends JFrame {
         } else {
             System.out.println("Background image not found: /res/backgrounds/MenuB.jpg");
         }
-
-        panel.add(mp.MenuMainPanel(new JPanel()), "MenuMainPanel");
-        panel.add(mp.MenuOptionsPanel(new JPanel()), "MenuOptionsPanel");
-
         panel.setBounds(0, 0, screenWidth, screenHeight);
         panel.setOpaque(false); // Certifica que o painel é transparente
+
+        panel.add(mp.getMenuMainPanel(), "MenuMainPanel");
+        panel.add(mp.getMenuOptionsPanel(), "MenuOptionsPanel");
+
 
         layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
 

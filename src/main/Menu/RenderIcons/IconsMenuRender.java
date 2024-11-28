@@ -19,7 +19,7 @@ public class IconsMenuRender {
 
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
-  
+
     public ImageIcon resizeIcon(String path, int width, int height) {
         URL resource = getClass().getResource(path);
         if (resource == null) {
@@ -55,6 +55,4 @@ public class IconsMenuRender {
             button.setVerticalTextPosition(SwingConstants.CENTER);
         }
     }
-
-
 }

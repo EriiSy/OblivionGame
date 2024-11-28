@@ -2,35 +2,30 @@ package main.Menu;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.FlowLayout;
 
 public class MenuOptionsPanel extends JPanel {
-    protected JPanel POptions = new JPanel();
-    public JButton BOptionsGraphics, BOptionsKeys, BOptionsSounds, BOptionsBack;
+    public JButton BOptionsKeys;
+    public JButton BOptionsSounds;
+    public JButton BOptionsGraphics;
+    public JButton BOptionsBack;
+
+    public MenuOptionsPanel() {
+        this.setLayout(new FlowLayout());
+        Buttons();
+        addButtons();
+    }
 
     protected void Buttons() {
-        BOptionsGraphics = new JButton("VIDEO");
-        BOptionsKeys = new JButton("KEYBOARD");
+        BOptionsKeys = new JButton("KEYS");
         BOptionsSounds = new JButton("SOUNDS");
+        BOptionsGraphics = new JButton("GRAPHICS");
         BOptionsBack = new JButton("BACK");
     }
 
     protected void addButtons() {
         for (JButton button : new JButton[]{BOptionsGraphics, BOptionsKeys, BOptionsSounds, BOptionsBack}) {
-            POptions.add(button);
+            this.add(button);
         }
     }
-
-    protected void removeButtons() {
-        for (JButton button : new JButton[]{BOptionsGraphics, BOptionsKeys, BOptionsSounds, BOptionsBack}) {
-            POptions.remove(button);
-        }
-    }
-
-
-    public MenuOptionsPanel() {
-        this.Buttons();
-        this.addButtons();
-    }
-    
-
 }

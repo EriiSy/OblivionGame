@@ -1,48 +1,25 @@
 package main.Menu;
 
 import javax.swing.JPanel;
-import javax.swing.Box;
-import java.awt.FlowLayout;
+import java.awt.CardLayout;
 
-public class MenuPanel {
+public class MenuPanel extends JPanel {
+    MenuMainPanel mmp;
+    MenuOptionsPanel mop;
 
-    private Menu menu;
-    
-    MenuMainPanel mmp = new MenuMainPanel();
-    MenuOptionsPanel mop = new MenuOptionsPanel();
-
-
-    public MenuPanel(Menu menu) {
-        this.menu = menu;
+    public MenuPanel() {
+        this.setLayout(new CardLayout());
+        mmp = new MenuMainPanel();
+        mop = new MenuOptionsPanel();
+        this.add(mmp, "MenuMainPanel");
+        this.add(mop, "MenuOptionsPanel");
     }
 
-    public JPanel MenuMainPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        panel.setOpaque(false); // Certifica que o painel é transparente
-        panel.add(Box.createVerticalStrut(100));
-        panel.add(mmp.BStart);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(mmp.BOptions);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(mmp.BExit);
-        return panel;
+    public MenuMainPanel getMenuMainPanel() {
+        return mmp;
     }
 
-    public JPanel MenuOptionsPanel(JPanel panel) {
-        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        panel.setOpaque(false); // Certifica que o painel é transparente
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(mop.BOptionsGraphics);
-        panel.add(Box.createVerticalStrut(100));
-        panel.add(mop.BOptionsKeys);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(mop.BOptionsSounds);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(mop.BOptionsBack);
-        return panel;
-    }
-
-    public Menu getMenu() {
-        return menu;
+    public MenuOptionsPanel getMenuOptionsPanel() {
+        return mop;
     }
 }
