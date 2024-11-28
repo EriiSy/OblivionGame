@@ -20,7 +20,8 @@ public class Menu extends JFrame {
     private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
     MenuPanel mp = new MenuPanel();
-    ActionsJFrame actions = new ActionsJFrame(mp);
+    ActionsJFrame actions = new ActionsJFrame(panel, mp);
+
     IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel());
 
     public Menu() {
@@ -57,12 +58,11 @@ public class Menu extends JFrame {
             System.out.println("Background image not found: /res/backgrounds/OblivionSoulsStart.jpg");
         }
 
-        // Adiciona os painéis ao CardLayout
-        panel.add(mp.getMenuMainPanel(), "MenuMain");
-        panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
-
         panel.setBounds(0, 0, screenWidth, screenHeight);
         panel.setOpaque(false); // Certifica que o painel é transparente
+
+        panel.add(mp.getMenuMainPanel(), "MenuMain");
+        panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
 
         layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
 
@@ -70,6 +70,7 @@ public class Menu extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        System.out.println("Menu started successfully");
     }
 
     public static void main(String[] args) {

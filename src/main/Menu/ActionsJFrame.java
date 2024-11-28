@@ -11,15 +11,17 @@ import java.awt.Color;
 import java.awt.CardLayout;
 
 public class ActionsJFrame extends JFrame implements ActionListener {
-    private JPanel panel = new JPanel(new CardLayout());
+    private JPanel panel;
     WindowGame game = new WindowGame();
     MenuPanel mp;
     IconsMenuRender size;
 
-    public ActionsJFrame(MenuPanel mp) {
+    public ActionsJFrame(JPanel panel, MenuPanel mp) {
+        this.panel = panel; // Certifica-se de que é o painel correto
         this.mp = mp;
         this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel());
     }
+    
 
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
@@ -54,7 +56,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{
             mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions,
-            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, mp.getMenuOptionsPanel().BOptionsBack}) {
+            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuOptionsPanel().BOptionsSounds, 
+            mp.getMenuOptionsPanel().BOptionsGraphics, mp.getMenuOptionsPanel().BOptionsBack}) {
             button.addActionListener(this);
         }
     }
@@ -67,13 +70,17 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        CardLayout cl = (CardLayout) (panel.getLayout());
+        CardLayout cl = (CardLayout) panel.getLayout();
         if (e.getSource() == mp.getMenuMainPanel().BStart) {
             game.gameStartThread();
         } else if (e.getSource() == mp.getMenuMainPanel().BExit) {
             System.exit(0);
         } else if (e.getSource() == mp.getMenuMainPanel().BOptions) {
+            System.out.println("Botão clicado: " + ((JButton)e.getSource()).getText());
             cl.show(panel, "MenuOptions");
+            panel.revalidate();
+            panel.repaint();
+
         } else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsBack) {
             cl.show(panel, "MenuMain");
         }
