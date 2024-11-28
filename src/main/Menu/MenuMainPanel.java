@@ -5,21 +5,16 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.Dimension;
-
 import main.Menu.RenderIcons.IconsMenuRender;
 
 public class MenuMainPanel extends JPanel {
     public JButton BStart, BExit, BOptions;
-    ConfigMenu buttonX = new ConfigMenu();
-    ConfigMenu buttonY = new ConfigMenu();
     ConfigMenu layout = new ConfigMenu();
-   
-    
 
     public MenuMainPanel() {
-        this.setLayout(layout.buttonPanelMain);
+        this.setLayout(layout.createMainPanelLayout(this));
         // Margem de 50px em cima e embaixo
-        this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0)); 
+        this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
         Buttons();
         this.setOpaque(false);
         configureButtons();
@@ -41,8 +36,8 @@ public class MenuMainPanel extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 200)));
         this.add(Box.createVerticalGlue());
         for (JButton button : new JButton[]{BStart, BOptions, BExit}) {
-            button.setAlignmentX(buttonX.x); 
-            button.setAlignmentY(buttonY.y);
+            button.setAlignmentX(layout.x); 
+            button.setAlignmentY(layout.y);
             this.add(button);
             this.add(Box.createVerticalStrut(10));
         }
