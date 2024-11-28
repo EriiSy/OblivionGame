@@ -42,6 +42,7 @@ public class Menu extends JFrame {
 
         URL backgroundURL = Main.class.getResource("/res/backgrounds/MenuB.jpg");
         if (backgroundURL != null) {
+            System.out.println("Background image found: " + backgroundURL);
             ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
             Image backgroundImage = backgroundImageIcon.getImage();
             JLabel background = new JLabel() {
@@ -56,14 +57,13 @@ public class Menu extends JFrame {
         } else {
             System.out.println("Background image not found: /res/backgrounds/MenuB.jpg");
         }
-        panel.setBounds(0, 0, screenWidth, screenHeight);
-        panel.setOpaque(false); // Certifica que o painel é transparente
-
+        
+        layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
+        
         panel.add(mp.getMenuMainPanel(), "MenuMainPanel");
         panel.add(mp.getMenuOptionsPanel(), "MenuOptionsPanel");
-
-
-        layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
+        panel.setBounds(0, 0, screenWidth, screenHeight);
+        panel.setOpaque(false); // Certifica que o painel é transparente
 
         this.add(layeredPane);
         this.pack();
