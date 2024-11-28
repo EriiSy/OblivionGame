@@ -40,9 +40,8 @@ public class Menu extends JFrame {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/MenuB.jpg");
+        URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
         if (backgroundURL != null) {
-            System.out.println("Background image found: " + backgroundURL);
             ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
             Image backgroundImage = backgroundImageIcon.getImage();
             JLabel background = new JLabel() {
@@ -55,21 +54,22 @@ public class Menu extends JFrame {
             background.setBounds(0, 0, screenWidth, screenHeight);
             layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
         } else {
-            System.out.println("Background image not found: /res/backgrounds/MenuB.jpg");
+            System.out.println("Background image not found: /res/backgrounds/OblivionSoulsStart.jpg");
         }
-        
-        layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
-        
-        panel.add(mp.getMenuMainPanel(), "MenuMainPanel");
-        panel.add(mp.getMenuOptionsPanel(), "MenuOptionsPanel");
+
+        // Adiciona os painéis ao CardLayout
+        panel.add(mp.getMenuMainPanel(), "MenuMain");
+        panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
+
         panel.setBounds(0, 0, screenWidth, screenHeight);
         panel.setOpaque(false); // Certifica que o painel é transparente
+
+        layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
 
         this.add(layeredPane);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        System.out.println("Menu started successfully");
     }
 
     public static void main(String[] args) {
