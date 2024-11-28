@@ -39,20 +39,30 @@ public class IconsMenuRender {
     }
 
     public void SizeIconBotton() {
-        for (JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions,
-            mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
-            button.setIcon(resizeIcon("/res/bottons/LightBlue/Normal.png", ICON_WIDTH, ICON_HEIGHT));
-            button.setRolloverIcon(resizeIcon("/res/bottons/LightBlue/Hover.png", ICON_WIDTH, ICON_HEIGHT));
-            button.setPressedIcon(resizeIcon("/res/bottons/LightBlue/Clicked.png", ICON_WIDTH, ICON_HEIGHT));
-            button.setPreferredSize(new Dimension(ICON_WIDTH, ICON_HEIGHT));
-            button.setBorderPainted(false);
-            button.setFocusPainted(false);
-            button.setContentAreaFilled(false);
-            button.setForeground(BUTTON_FOREGROUND_COLOR);
-            button.setFont(BUTTON_FONT);
-            button.setVerticalAlignment(SwingConstants.CENTER);
-            button.setHorizontalTextPosition(SwingConstants.CENTER);
-            button.setVerticalTextPosition(SwingConstants.CENTER);
+        if (mmp != null) {
+            for (JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions}) {
+                configureButton(button);
+            }
         }
+        if (mop != null) {
+            for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
+                configureButton(button);
+            }
+        }
+    }
+
+    private void configureButton(JButton button) {
+        button.setIcon(resizeIcon("/res/bottons/LightBlue/Normal.png", ICON_WIDTH, ICON_HEIGHT));
+        button.setRolloverIcon(resizeIcon("/res/bottons/LightBlue/Hover.png", ICON_WIDTH, ICON_HEIGHT));
+        button.setPressedIcon(resizeIcon("/res/bottons/LightBlue/Clicked.png", ICON_WIDTH, ICON_HEIGHT));
+        button.setPreferredSize(new Dimension(ICON_WIDTH, ICON_HEIGHT));
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        button.setForeground(BUTTON_FOREGROUND_COLOR);
+        button.setFont(BUTTON_FONT);
+        button.setVerticalAlignment(SwingConstants.CENTER);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
     }
 }
