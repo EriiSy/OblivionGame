@@ -13,12 +13,15 @@ public class MenuMainPanel extends JPanel {
     public JButton BStart, BExit, BOptions;
     ConfigButtons buttonX = new ConfigButtons();
     ConfigButtons buttonY = new ConfigButtons();
+    ConfigButtons layout = new ConfigButtons();
+   
+    
     
     
     
 
     public MenuMainPanel() {
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(layout.buttonPanelMain);
         // Margem de 50px em cima e embaixo
         this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0)); 
         Buttons();
@@ -29,8 +32,8 @@ public class MenuMainPanel extends JPanel {
 
     protected void Buttons() {
         BStart = new JButton("START GAME");
-        BExit = new JButton("EXIT GAME");
         BOptions = new JButton("OPTIONS");
+        BExit = new JButton("EXIT GAME");
     }
 
     protected void configureButtons() {
@@ -41,7 +44,7 @@ public class MenuMainPanel extends JPanel {
     protected void addButtons() {
         this.add(Box.createRigidArea(new Dimension(0, 200)));
         this.add(Box.createVerticalGlue());
-        for (JButton button : new JButton[]{BStart, BExit, BOptions}) {
+        for (JButton button : new JButton[]{BStart, BOptions, BExit}) {
             button.setAlignmentX(buttonX.x); 
             button.setAlignmentY(buttonY.y);
             this.add(button);

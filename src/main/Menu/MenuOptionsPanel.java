@@ -15,10 +15,11 @@ public class MenuOptionsPanel extends JPanel {
     public JButton BOptionsBack;
     ConfigButtons buttonX = new ConfigButtons();
     ConfigButtons buttonY = new ConfigButtons();
+    ConfigButtons layout = new ConfigButtons();
  
 
     public MenuOptionsPanel() {
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setLayout(layout.buttonPanelOptions);
         // Margem de 50px em cima e embaixo
         this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
         Buttons();
