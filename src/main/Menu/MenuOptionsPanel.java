@@ -13,9 +13,9 @@ public class MenuOptionsPanel extends JPanel {
     public JButton BOptionsSounds;
     public JButton BOptionsGraphics;
     public JButton BOptionsBack;
-    ConfigButtons buttonX = new ConfigButtons();
-    ConfigButtons buttonY = new ConfigButtons();
-    ConfigButtons layout = new ConfigButtons();
+    ConfigMenu buttonX = new ConfigMenu();
+    ConfigMenu buttonY = new ConfigMenu();
+    ConfigMenu layout = new ConfigMenu();
  
 
     public MenuOptionsPanel() {

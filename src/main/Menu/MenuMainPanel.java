@@ -2,7 +2,6 @@ package main.Menu;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.Dimension;
@@ -11,13 +10,10 @@ import main.Menu.RenderIcons.IconsMenuRender;
 
 public class MenuMainPanel extends JPanel {
     public JButton BStart, BExit, BOptions;
-    ConfigButtons buttonX = new ConfigButtons();
-    ConfigButtons buttonY = new ConfigButtons();
-    ConfigButtons layout = new ConfigButtons();
+    ConfigMenu buttonX = new ConfigMenu();
+    ConfigMenu buttonY = new ConfigMenu();
+    ConfigMenu layout = new ConfigMenu();
    
-    
-    
-    
     
 
     public MenuMainPanel() {
