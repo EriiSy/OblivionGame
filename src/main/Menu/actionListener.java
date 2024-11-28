@@ -1,4 +1,4 @@
-package main;
+package main.Menu;
 
 public interface actionListener {
 

@@ -1,10 +1,13 @@
-package main;
+package main.Menu;
 
 import javax.swing.JPanel;
-import javax.swing.JFrame;
+import main.Main;
+import main.WindowGame;
+import main.Menu.RenderIcons.*;
 import javax.swing.JLayeredPane;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JFrame;
 import java.net.URL;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -12,20 +15,16 @@ import java.awt.Graphics;
 import java.awt.CardLayout;
 
 public class Menu extends JFrame {
+    final int screenWidth = 1920;
+    final int screenHeight = 1080;
     private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
-    MenuPanel mp = new MenuPanel(this);
+    MenuPanel mp = new MenuPanel();
     ActionsJFrame actions = new ActionsJFrame(mp);
-
-    private void actionsButtons() {
-        actions.Buttons();
-        actions.SizeIconBotton();
-        actions.ButtonsMouseListener();
-        actions.ActionListenerButtons();
-    }
+    IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel());
 
     public Menu() {
-        this.setSize(actions.screenWidth, actions.screenHeight);
+        this.setSize(screenWidth, screenHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
         this.setTitle("Oblivion Souls");
@@ -36,10 +35,10 @@ public class Menu extends JFrame {
     }
 
     public void startMenu() {
-        this.actionsButtons();
+        actions.actionsButtons();
 
         JLayeredPane layeredPane = new JLayeredPane();
-        layeredPane.setPreferredSize(new Dimension(actions.screenWidth, actions.screenHeight));
+        layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
         URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
         if (backgroundURL != null) {
@@ -52,17 +51,17 @@ public class Menu extends JFrame {
                     g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
                 }
             };
-            background.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
+            background.setBounds(0, 0, screenWidth, screenHeight);
             layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
         } else {
             System.out.println("Background image not found: /res/backgrounds/OblivionSoulsStart.jpg");
         }
 
         // Adiciona os painéis ao CardLayout
-        panel.add(mp.MenuMainPanel(new JPanel()), "MenuMain");
-        panel.add(mp.MenuOptionsPanel(new JPanel()), "MenuOptions");
+        panel.add(mp.getMenuMainPanel(), "MenuMain");
+        panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
 
-        panel.setBounds(0, 0, actions.screenWidth, actions.screenHeight);
+        panel.setBounds(0, 0, screenWidth, screenHeight);
         panel.setOpaque(false); // Certifica que o painel é transparente
 
         layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
