@@ -11,8 +11,8 @@ public class MenuPanel extends JPanel {
         this.setLayout(new CardLayout());
         mmp = new MenuMainPanel();
         mop = new MenuOptionsPanel();
-        this.add(mmp, "MenuMainPanel");
-        this.add(mop, "MenuOptionsPanel");
+        this.add(mmp, "MenuMain");
+        this.add(mop, "MenuOptions");
     }
 
     public MenuMainPanel getMenuMainPanel() {
