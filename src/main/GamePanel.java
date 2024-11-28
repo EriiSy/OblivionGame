@@ -20,8 +20,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int maxScreenRow = 12; // Quantidade de linhas a serem exibidas na tela
     final int screenWidthPlayer = tileSizePlayer * maxScreenColumns; // tamanho da  largura da tela
     final int screenHeightPlayer = tileSizePlayer * maxScreenRow;  // tamanho da altura da tela
-    final int screenWidth = tileSize * maxScreenColumns; // tamanho da  largura da tela
-    final int screenHeight = tileSize * maxScreenRow;  // tamanho da altura da tela
+    public final int screenWidth = tileSize * maxScreenColumns; // tamanho da  largura da tela
+    public final int screenHeight = tileSize * maxScreenRow;  // tamanho da altura da tela
 
     int FPS = 60;
 
