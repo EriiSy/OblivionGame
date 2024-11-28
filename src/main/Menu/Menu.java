@@ -26,7 +26,7 @@ public class Menu extends JFrame {
     MenuOptionsPanel mop = new MenuOptionsPanel();
     ActionsJFrame actions = new ActionsJFrame(mp);
     resizeIcons resize = new resizeIcons();
-    SizeIconsMenu size = new SizeIconsMenu(mmp, mop);
+    IconsMenuRender size = new IconsMenuRender(mmp, mop);
 
     public Menu() {
         this.setSize(screenWidth, screenHeight);

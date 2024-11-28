@@ -18,15 +18,15 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     MenuPanel mp;
     MenuMainPanel mmp = new MenuMainPanel();
     MenuOptionsPanel mop = new MenuOptionsPanel();
-    resizeIcons resize = new resizeIcons();
-    SizeIconsMenu size = new SizeIconsMenu(mmp, mop);
+    IconsMenuRender size = new IconsMenuRender(mmp, mop);
 
     public ActionsJFrame(MenuPanel mp) {
         this.mp = mp;
     }
 
-    protected void ButtonsMouseListenerMenuMainPanel() {
-        for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions}) {
+    protected void ButtonsMouseListener() {
+        for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions, 
+            mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -40,46 +40,19 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50));
+                    button.setIcon(size.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50));
                     button.setIconTextGap(-10);
                 }
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
+                    button.setIcon(size.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
                     button.setIconTextGap(0);
                 }
             });
         }
     }
 
-    protected void ButtonsMouseListenerMenuOptionsPanel() {
-        for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
-            button.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    button.setForeground(Color.GRAY);
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    button.setForeground(new Color(170, 140, 177));
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Clicked.png", 200, 50));
-                    button.setIconTextGap(-10);
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    button.setIcon(resize.resizeIcon("/res/bottons/LightBlue/Normal.png", 200, 50));
-                    button.setIconTextGap(0);
-                }
-            });
-        }
-    }
 
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions, mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
@@ -89,8 +62,9 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     protected void actionsButtons() {
         mp.MenuMainPanel(panel);
-        size.SizeIconBottonMainMenuPanel();
-        ButtonsMouseListenerMenuMainPanel();
+        size.SizeIconBotton();
+        size.resizeIcon();
+        ButtonsMouseListener();
         ActionListenerButtons();
         System.out.println("Actions buttons initialized");
     }
