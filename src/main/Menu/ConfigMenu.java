@@ -16,4 +16,8 @@ public class ConfigMenu {
     public BoxLayout createOptionsPanelLayout(JPanel panel) {
         return new BoxLayout(panel, BoxLayout.Y_AXIS);
     }
+
+    public BoxLayout createCreditsPanelLayout(JPanel panel) {
+        return new BoxLayout(panel, BoxLayout.Y_AXIS);
+    }
 }
