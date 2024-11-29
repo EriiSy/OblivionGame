@@ -9,19 +9,28 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class ActionsJFrame extends JFrame implements ActionListener {
     private JPanel panel;
     WindowGame game = new WindowGame();
     MenuPanel mp;
     IconsMenuRender size;
+    MenuCreditsPanel creditsPanel;
 
     public ActionsJFrame(JPanel panel, MenuPanel mp) {
         this.panel = panel; // Certifica-se de que é o painel correto
         this.mp = mp;
         this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(),mp.getMenuCreditsPanel());
+        this.creditsPanel = new MenuCreditsPanel(); // Inicializa o painel de créditos
+
+        // Acredito que sirva para redimensionar a qualquer tela adaptavelmente.
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        setSize(screenWidth, screenHeight);
     }
-    
 
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
@@ -86,6 +95,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
         }else if (e.getSource() == mp.getMenuMainPanel().BCredits){
             cl.show(panel, "MenuCredits");
+            panel.removeAll();
+            panel.add(creditsPanel); // Adiciona o painel de créditos
             panel.revalidate();
             panel.repaint();
 
