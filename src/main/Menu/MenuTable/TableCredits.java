@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TableCredits {
 
@@ -21,8 +23,9 @@ public class TableCredits {
         textPane = new JTextPane();
         textPane.setEditable(false);
         textPane.setFont(new java.awt.Font("Monocraft", java.awt.Font.BOLD, 24));
-        textPane.setForeground(Color.BLACK);
-        textPane.setBackground(new java.awt.Color(0, 0, 0, 0)); // Fundo transparente
+        textPane.setForeground(Color.WHITE);
+        textPane.setBackground(new java.awt.Color(0, 0, 0, 0));
+        textPane.setOpaque(false);
 
         // Adicionar o texto desejado
         String text = "Trabalho de POO\n" + 
@@ -38,8 +41,21 @@ public class TableCredits {
         StyledDocument doc = textPane.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-        StyleConstants.setForeground(center, Color.BLACK);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
+
+        // Desativar a seleção de texto
+        textPane.setHighlighter(null);
+        textPane.setFocusable(false);
+        textPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                e.consume();
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                e.consume();
+            }
+        });
 
         // Criar um JPanel personalizado com imagem de fundo
         panelWithBackground = new JPanel() {
@@ -52,11 +68,12 @@ public class TableCredits {
             }
         };
         panelWithBackground.setLayout(new java.awt.BorderLayout());
+        panelWithBackground.setOpaque(false); 
         panelWithBackground.add(textPane, java.awt.BorderLayout.CENTER);
 
         scrollPane = new JScrollPane(panelWithBackground);
         scrollPane.setPreferredSize(new java.awt.Dimension(800, 400));
-        scrollPane.setOpaque(false);
+        scrollPane.setOpaque(false); 
         scrollPane.getViewport().setOpaque(false);
     }
 
