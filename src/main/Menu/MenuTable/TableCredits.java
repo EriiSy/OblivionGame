@@ -26,8 +26,8 @@ public class TableCredits {
     public TableCredits(ActionListener backAction) {
         textPane = new JTextPane();
         textPane.setEditable(false);
-        textPane.setFont(new java.awt.Font("Monocraft", java.awt.Font.BOLD, 24));
-        textPane.setForeground(Color.BLACK);
+        textPane.setFont(new java.awt.Font("Monocraft", java.awt.Font.BOLD, 50));
+        textPane.setForeground(Color.ORANGE);
         textPane.setBackground(new java.awt.Color(0, 0, 0, 0)); // Fundo transparente
         textPane.setOpaque(false); // Certifica que o JTextPane é transparente
 
@@ -36,7 +36,7 @@ public class TableCredits {
                       "\nNome do jogo: Oblivion Souls\n\n" + "Integrantes do grupo:" +
                       "\nJonathan Jr. (developer)\n" +
                       "Erick Vinicius (developer)\n" +
-                      "Aloisio (designer)\n" +
+                      "Aloisio (designer e developer)\n" +
                       "\nObrigado por jogar!";
 
         textPane.setText(text);
@@ -60,10 +60,8 @@ public class TableCredits {
                 e.consume();
             }
         });
-
-        // Criar um JPanel personalizado com imagem de fundo
         panelWithBackground = new JPanel() {
-            private Image backgroundImage = new ImageIcon("path/to/your/image.png").getImage();
+            private Image backgroundImage = new ImageIcon().getImage();
 
             @Override
             protected void paintComponent(Graphics g) {

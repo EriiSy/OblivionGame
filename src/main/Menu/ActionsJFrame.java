@@ -102,6 +102,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             cl.show(panel, "MenuMain");
         } else if (e.getSource() == mp.getMenuCreditsPanel().getBackButton()) {
             cl.show(panel, "MenuMain");
+        } else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsSounds) {
+            cl.show(panel, "MenuOptionsSounds");
         }
     }
 }

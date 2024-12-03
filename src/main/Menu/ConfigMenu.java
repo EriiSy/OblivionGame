@@ -20,4 +20,7 @@ public class ConfigMenu {
     public BoxLayout createCreditsPanelLayout(JPanel panel) {
         return new BoxLayout(panel, BoxLayout.Y_AXIS);
     }
+    public BoxLayout createOptionsSoundsLayout(JPanel panel) {
+        return new BoxLayout(panel, BoxLayout.Y_AXIS);
+    }
 }
