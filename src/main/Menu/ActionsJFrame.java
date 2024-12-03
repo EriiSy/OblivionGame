@@ -37,7 +37,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions, 
             mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
-            mp.getMenuOptionsPanel().BOptionsBack}) {
+            mp.getMenuOptionsPanel().BOptionsBack, creditsPanel.getBackButton()}) {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -69,7 +69,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions,
             mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits,
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
-            mp.getMenuOptionsPanel().BOptionsBack}) {
+            mp.getMenuOptionsPanel().BOptionsBack, mp.getMenuCreditsPanel().getBackButton()}) {
             button.addActionListener(this);
         }
     }
@@ -95,12 +95,12 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
         }else if (e.getSource() == mp.getMenuMainPanel().BCredits){
             cl.show(panel, "MenuCredits");
-            panel.removeAll();
-            panel.add(creditsPanel); // Adiciona o painel de créditos
             panel.revalidate();
             panel.repaint();
 
         }else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsBack) {
+            cl.show(panel, "MenuMain");
+        } else if (e.getSource() == mp.getMenuCreditsPanel().getBackButton()) {
             cl.show(panel, "MenuMain");
         }
     }
