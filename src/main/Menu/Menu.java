@@ -13,10 +13,10 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 
 public class Menu extends JFrame {
-    final int screenWidth = 1920;
-    final int screenHeight = 1080;
+
     private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
     MenuPanel mp = new MenuPanel();
@@ -25,7 +25,15 @@ public class Menu extends JFrame {
     IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(), 
     mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel());
 
+    public static final URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
+    public static final Image backgroundImage = new ImageIcon(backgroundURL).getImage();
+    public int screenHeight;
+    public int screenWidth;
+
     public Menu() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.screenHeight = screenSize.height;
+        this.screenWidth = screenSize.width;
         this.setSize(screenWidth, screenHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
@@ -42,15 +50,12 @@ public class Menu extends JFrame {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
         if (backgroundURL != null) {
-            ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
-            Image backgroundImage = backgroundImageIcon.getImage();
             JLabel background = new JLabel() {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                    g.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, this);
                 }
             };
             background.setBounds(0, 0, screenWidth, screenHeight);
