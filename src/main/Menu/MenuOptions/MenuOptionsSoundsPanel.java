@@ -19,42 +19,53 @@ public class MenuOptionsSoundsPanel extends JPanel {
     JRadioButton portugueseRadioButton, englishRadioButton, spanishRadioButton;
     ButtonGroup languageGroup;
     ConfigMenu layout = new ConfigMenu();
+    GridBagConstraints gbc = new GridBagConstraints();
 
     public MenuOptionsSoundsPanel() {
-        this.setLayout(layout.createOptionsSoundsLayout(this));
-        GridBagConstraints gbc = new GridBagConstraints();
+        this.setLayout(new GridBagLayout());
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
+    }
 
-        // Adicionar CheckBox para habilitar/desabilitar som do jogo
+    protected void CheckBox() {
         gameSoundCheckBox = new JCheckBox("Habilitar Som do Jogo");
-        gbc.gridy++;
-        this.add(gameSoundCheckBox, gbc);
-
-        // Adicionar CheckBox para habilitar/desabilitar som da música
         musicSoundCheckBox = new JCheckBox("Habilitar Som da Música");
-        gbc.gridy++;
-        this.add(musicSoundCheckBox, gbc);
+    }
 
-        // Adicionar RadioButton para seleção de legendas
+    protected void addCheckBox() {
+        gbc.gridy++;
+        this.add(gameSoundCheckBox);
+        this.add(musicSoundCheckBox);
+    }
+
+    protected void RadioButton() {
         portugueseRadioButton = new JRadioButton("Português");
         englishRadioButton = new JRadioButton("Inglês");
         spanishRadioButton = new JRadioButton("Espanhol");
+    }
 
-        // Adicionar RadioButtons a um ButtonGroup
+    protected void addRadioButton() {
+        this.add(portugueseRadioButton);
+        this.add(englishRadioButton);
+        this.add(spanishRadioButton);
+    }
+
+    protected void ButtonGroup() {
         languageGroup = new ButtonGroup();
         languageGroup.add(portugueseRadioButton);
         languageGroup.add(englishRadioButton);
         languageGroup.add(spanishRadioButton);
-
-        // Adicionar RadioButtons ao painel
-        gbc.gridy++;
-        this.add(portugueseRadioButton, gbc);
-        gbc.gridy++;
-        this.add(englishRadioButton, gbc);
-        gbc.gridy++;
-        this.add(spanishRadioButton, gbc);
     }
+
+    protected void addButtons() {
+        gbc.gridy++;
+        this.add(gameSoundCheckBox, gbc);
+        this.add(musicSoundCheckBox);
+        this.add(portugueseRadioButton);
+        this.add(englishRadioButton);
+        this.add(spanishRadioButton);
+    }
+
 }
