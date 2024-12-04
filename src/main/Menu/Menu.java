@@ -23,7 +23,7 @@ public class Menu extends JFrame {
     ActionsJFrame actions = new ActionsJFrame(panel, mp);
 
     IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(), 
-    mp.getMenuCreditsPanel());
+    mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel());
 
     public Menu() {
         this.setSize(screenWidth, screenHeight);
@@ -63,6 +63,7 @@ public class Menu extends JFrame {
         panel.setOpaque(false); // Certifica que o painel é transparente
 
         panel.add(mp.getMenuMainPanel(), "MenuMain");
+        panel.add(mp.getMenuPlayerPanel(), "MenuPlayer");
         panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
         panel.add(mp.getMenuCreditsPanel(), "MenuCredits");
         panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");

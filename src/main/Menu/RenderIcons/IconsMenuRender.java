@@ -3,8 +3,11 @@ package main.Menu.RenderIcons;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 import main.Menu.MenuMainPanel;
 import main.Menu.MenuOptionsPanel;
+import main.Menu.MenuPlayer.MenuPlayerPanel;
 import main.Menu.MenuCreditsPanel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,6 +24,7 @@ public class IconsMenuRender {
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
     MenuCreditsPanel mcp;
+    MenuPlayerPanel playerM; 
 
     public ImageIcon resizeIcon(String path, int width, int height) {
         URL resource = getClass().getResource(path);
@@ -35,21 +39,39 @@ public class IconsMenuRender {
         return new ImageIcon(resizedImg);
     }
 
-    public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop, MenuCreditsPanel mcp) {
+    public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop, MenuCreditsPanel mcp, MenuPlayerPanel playerM) {
         this.mmp = mmp;
         this.mop = mop;
         this.mcp = mcp;
+        this.playerM = playerM;
     }
 
     public void SizeIconBotton() {
         if (mmp != null) {
-            for (JButton button : new JButton[]{mmp.BStart, mmp.BCredits,mmp.BExit,mmp.BOptions}) {
+            for (JButton button : new JButton[]{mmp.BStart, mmp.BNew,mmp.BCredits,mmp.BExit,mmp.BOptions}) {
                 configureButton(button);
             }
         }
         if (mop != null) {
-            for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, mop.BOptionsBack}) {
+            for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, 
+                mop.BOptionsBack}) {
                 configureButton(button);
+            }
+        }
+    }
+
+    public void SizeIconTextField(){
+        if (playerM != null){
+            for (JTextField textField : new JTextField[]{playerM.tfNick}){
+                configureTextField(textField);
+            }
+        }
+          
+    }
+    public void SizeIconLabel(){
+        if (playerM != null){
+            for (JLabel label : new JLabel[]{playerM.lbNick}){
+                configureLabel(label);
             }
         }
     }
@@ -67,5 +89,22 @@ public class IconsMenuRender {
         button.setVerticalAlignment(SwingConstants.CENTER);
         button.setHorizontalTextPosition(SwingConstants.CENTER);
         button.setVerticalTextPosition(SwingConstants.CENTER);
+    }
+
+    private void configureTextField(JTextField textField) {
+        textField.setFont(BUTTON_FONT);
+        textField.setPreferredSize(new Dimension(200, 30)); // Ajuste o tamanho do JTextField
+        textField.setMinimumSize(new Dimension(200, 30));
+        textField.setMaximumSize(new Dimension(200, 30));
+        textField.setForeground(BUTTON_FOREGROUND_COLOR);
+        textField.setOpaque(false); // Certifique-se de que o campo de texto seja transparente
+    }
+
+    private void configureLabel(JLabel label) {
+        label.setFont(BUTTON_FONT);
+        label.setPreferredSize(new Dimension(50, 30)); // Ajuste o tamanho do JLabel
+        label.setForeground(BUTTON_FOREGROUND_COLOR);
+        label.setBorder(null);
+        label.setOpaque(false); // Certifique-se de que o label seja transparente
     }
 }

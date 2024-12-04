@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import main.Menu.RenderIcons.IconsMenuRender;
 
 public class MenuMainPanel extends JPanel {
-    public JButton BStart, BExit, BOptions, BCredits;
+    public JButton BStart, BExit, BOptions, BCredits,BNew;
     ConfigMenu layout = new ConfigMenu();
 
     public MenuMainPanel() {
@@ -23,20 +23,21 @@ public class MenuMainPanel extends JPanel {
 
     protected void Buttons() {
         BStart = new JButton("START GAME");
+        BNew = new JButton("NEW GAME");
         BOptions = new JButton("OPTIONS");
         BCredits = new JButton("CREDITS");
         BExit = new JButton("EXIT GAME");
     }
 
     protected void configureButtons() {
-        IconsMenuRender size = new IconsMenuRender(this, null, null);
+        IconsMenuRender size = new IconsMenuRender(this, null, null,null);
         size.SizeIconBotton();
     }
 
     protected void addButtons() {
         this.add(Box.createRigidArea(new Dimension(0, 200)));
         this.add(Box.createVerticalGlue());
-        for (JButton button : new JButton[]{BStart, BOptions, BCredits,BExit}) {
+        for (JButton button : new JButton[]{BStart, BNew,BOptions, BCredits,BExit}) {
             button.setAlignmentX(layout.x); 
             button.setAlignmentY(layout.y);
             this.add(button);
