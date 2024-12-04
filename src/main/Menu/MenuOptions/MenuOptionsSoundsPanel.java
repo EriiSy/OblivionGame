@@ -4,6 +4,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+
+import main.Menu.ConfigMenu;
+
 import javax.swing.ButtonGroup;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -12,15 +15,13 @@ import java.awt.Insets;
 public class MenuOptionsSoundsPanel extends JPanel {
 
     JButton BOptionsSounds;
-    JCheckBox gameSoundCheckBox;
-    JCheckBox musicSoundCheckBox;
-    JRadioButton portugueseRadioButton;
-    JRadioButton englishRadioButton;
-    JRadioButton spanishRadioButton;
+    JCheckBox gameSoundCheckBox, musicSoundCheckBox;
+    JRadioButton portugueseRadioButton, englishRadioButton, spanishRadioButton;
     ButtonGroup languageGroup;
+    ConfigMenu layout = new ConfigMenu();
 
     public MenuOptionsSoundsPanel() {
-        this.setLayout(new GridBagLayout());
+        this.setLayout(layout.createOptionsSoundsLayout(this));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
