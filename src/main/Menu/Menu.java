@@ -65,6 +65,7 @@ public class Menu extends JFrame {
         panel.add(mp.getMenuMainPanel(), "MenuMain");
         panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
         panel.add(mp.getMenuCreditsPanel(), "MenuCredits");
+        panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");
 
         layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
 

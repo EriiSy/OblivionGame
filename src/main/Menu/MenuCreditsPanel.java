@@ -1,66 +1,48 @@
 package main.Menu;
+
+import main.Menu.MenuTable.TableCredits;
+
 import javax.swing.JPanel;
-
-import main.Menu.RenderIcons.IconsMenuRender;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.Dimension;
-
+import javax.swing.JScrollPane;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import main.Menu.ConfigMenu;
-
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuCreditsPanel extends JPanel {
 
-        private JLabel lblCredits,lblDeveloper,lblDesigner, lSpecialThanks;
-        ConfigMenu layout = new ConfigMenu();
+    private JScrollPane creditsScrollPane;
+    private JButton backButton;
 
-        public MenuCreditsPanel() {
-            this.setLayout(layout.createCreditsPanelLayout(this));
-            this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
-            setOpaque(false);
-            Labels();
-            configLabels();
-            configPopUP();
-            addCreditsPanel();
+    public MenuCreditsPanel() {
+        this.setLayout(new GridBagLayout());
+        this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
+        setOpaque(false);
+        addCreditsPanel();
+    }
 
-        }
-
-        public void configPopUP() {
-            lSpecialThanks.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    javax.swing.JOptionPane.showMessageDialog(null, "OBRIGADO!");
-                }
-            });
-        }
-
-        public void Labels() {
-            lblCredits = new JLabel("CREDITS");
-            lblDeveloper = new JLabel("DEVELOPER: ---");
-            lblDesigner = new JLabel("DESIGNER:----");
-            lSpecialThanks = new JLabel("Special Thanks");
-
-        }
-
-        public void configLabels() {
-            for (JLabel label : new JLabel[]{lblCredits, lblDeveloper, lblDesigner, lSpecialThanks}) {
-                label.setFont(new Font("Monocraft", Font.BOLD, 20));
-                label.setForeground(Color.WHITE);
+    public void addCreditsPanel() {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridheight = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
+        TableCredits tableCredits = new TableCredits(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Ação do botão "Back"
             }
-        }
-        public void addCreditsPanel() {
-            this.add(Box.createRigidArea(new Dimension(0, 200)));
-            this.add(Box.createVerticalGlue());
-            for (JLabel label : new JLabel[]{lblCredits, lblDeveloper, lblDesigner, lSpecialThanks}) {
-                label.setAlignmentX(layout.x); 
-                label.setAlignmentY(layout.y);
-                this.add(label);
-                this.add(Box.createVerticalStrut(10));
-            }
-            this.add(Box.createVerticalGlue());
-        }
+        });
+        creditsScrollPane = tableCredits.getScrollPane();
+        backButton = tableCredits.getBackButton();
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add(creditsScrollPane, gbc);
+    }
+
+    public JButton getBackButton() {
+        return backButton;
+    }
 }
-
