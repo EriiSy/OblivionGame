@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import main.Menu.MenuMainPanel;
 import main.Menu.MenuOptionsPanel;
+import main.Menu.MenuCreditsPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,6 +20,7 @@ public class IconsMenuRender {
 
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
+    MenuCreditsPanel mcp;
 
     public ImageIcon resizeIcon(String path, int width, int height) {
         URL resource = getClass().getResource(path);
@@ -33,14 +35,15 @@ public class IconsMenuRender {
         return new ImageIcon(resizedImg);
     }
 
-    public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop) {
+    public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop, MenuCreditsPanel mcp) {
         this.mmp = mmp;
         this.mop = mop;
+        this.mcp = mcp;
     }
 
     public void SizeIconBotton() {
         if (mmp != null) {
-            for (JButton button : new JButton[]{mmp.BStart, mmp.BExit, mmp.BOptions}) {
+            for (JButton button : new JButton[]{mmp.BStart, mmp.BCredits,mmp.BExit,mmp.BOptions}) {
                 configureButton(button);
             }
         }

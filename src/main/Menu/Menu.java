@@ -22,7 +22,8 @@ public class Menu extends JFrame {
     MenuPanel mp = new MenuPanel();
     ActionsJFrame actions = new ActionsJFrame(panel, mp);
 
-    IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel());
+    IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(), 
+    mp.getMenuCreditsPanel());
 
     public Menu() {
         this.setSize(screenWidth, screenHeight);
@@ -63,6 +64,8 @@ public class Menu extends JFrame {
 
         panel.add(mp.getMenuMainPanel(), "MenuMain");
         panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
+        panel.add(mp.getMenuCreditsPanel(), "MenuCredits");
+        panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");
 
         layeredPane.add(panel, JLayeredPane.PALETTE_LAYER); // Adiciona o painel na camada superior
 

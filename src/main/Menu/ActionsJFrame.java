@@ -9,24 +9,35 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class ActionsJFrame extends JFrame implements ActionListener {
     private JPanel panel;
     WindowGame game = new WindowGame();
     MenuPanel mp;
     IconsMenuRender size;
+    MenuCreditsPanel creditsPanel;
 
     public ActionsJFrame(JPanel panel, MenuPanel mp) {
         this.panel = panel; // Certifica-se de que é o painel correto
         this.mp = mp;
-        this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel());
+        this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(),mp.getMenuCreditsPanel());
+        this.creditsPanel = new MenuCreditsPanel(); // Inicializa o painel de créditos
+
+        // Acredito que sirva para redimensionar a qualquer tela adaptavelmente.
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        setSize(screenWidth, screenHeight);
     }
-    
 
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions,
-            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, mp.getMenuOptionsPanel().BOptionsBack}) {
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions, 
+            mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
+            mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
+            mp.getMenuOptionsPanel().BOptionsBack, creditsPanel.getBackButton()}) {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -56,8 +67,9 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{
             mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions,
-            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuOptionsPanel().BOptionsSounds, 
-            mp.getMenuOptionsPanel().BOptionsGraphics, mp.getMenuOptionsPanel().BOptionsBack}) {
+            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits,
+            mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
+            mp.getMenuOptionsPanel().BOptionsBack, mp.getMenuCreditsPanel().getBackButton()}) {
             button.addActionListener(this);
         }
     }
@@ -81,8 +93,17 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             panel.revalidate();
             panel.repaint();
 
-        } else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsBack) {
+        }else if (e.getSource() == mp.getMenuMainPanel().BCredits){
+            cl.show(panel, "MenuCredits");
+            panel.revalidate();
+            panel.repaint();
+
+        }else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsBack) {
             cl.show(panel, "MenuMain");
+        } else if (e.getSource() == mp.getMenuCreditsPanel().getBackButton()) {
+            cl.show(panel, "MenuMain");
+        } else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsSounds) {
+            cl.show(panel, "MenuOptionsSounds");
         }
     }
 }
