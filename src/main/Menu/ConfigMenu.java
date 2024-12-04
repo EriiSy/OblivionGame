@@ -29,7 +29,7 @@ public class ConfigMenu {
         gbc.gridy = gridy;
         gbc.insets = new Insets(5, 5, 5, 5); // Reduza os Insets para aproximar os componentes
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Permite que o JTextField ocupe o espaço horizontal disponível
+        // gbc.fill = GridBagConstraints.HORIZONTAL; // Permite que o JTextField ocupe o espaço horizontal disponível
         return gbc;
     }
 

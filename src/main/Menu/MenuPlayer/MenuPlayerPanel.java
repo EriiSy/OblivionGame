@@ -30,7 +30,7 @@ public class MenuPlayerPanel extends JPanel {
     }
 
     protected void textField(){
-        tfNick = new JTextField(20); // Ajuste o tamanho do JTextField
+        tfNick = new JTextField(" ",20); // Ajuste o tamanho do JTextField
     }
 
     protected void config() {

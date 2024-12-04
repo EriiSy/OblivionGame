@@ -19,8 +19,11 @@ public class IconsMenuRender {
     private static final int ICON_WIDTH = 200;
     private static final int ICON_HEIGHT = 50;
     private static final Color BUTTON_FOREGROUND_COLOR = new Color(170, 140, 177);
+    private static final Color LABEL_FOREGROUND_COLOR = new Color(Color.white.getRGB());
     private static final Font BUTTON_FONT = new Font("Monocraft", Font.BOLD, 20);
-
+    private static final Font LABEL_FONT = new Font("Monocraft", Font.BOLD, 40);
+    private static final int LABEL_ICON_WIDTH = 400;
+    private static final int LABEL_ICON_HEIGHT = 100;
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
     MenuCreditsPanel mcp;
@@ -92,19 +95,24 @@ public class IconsMenuRender {
     }
 
     private void configureTextField(JTextField textField) {
+        
         textField.setFont(BUTTON_FONT);
-        textField.setPreferredSize(new Dimension(200, 30)); // Ajuste o tamanho do JTextField
+        textField.setPreferredSize(new Dimension(200, 50)); // Ajuste o tamanho do JTextField
         textField.setMinimumSize(new Dimension(200, 30));
         textField.setMaximumSize(new Dimension(200, 30));
         textField.setForeground(BUTTON_FOREGROUND_COLOR);
-        textField.setOpaque(false); // Certifique-se de que o campo de texto seja transparente
+        
     }
 
     private void configureLabel(JLabel label) {
-        label.setFont(BUTTON_FONT);
-        label.setPreferredSize(new Dimension(50, 30)); // Ajuste o tamanho do JLabel
-        label.setForeground(BUTTON_FOREGROUND_COLOR);
+        ImageIcon icon = resizeIcon("/res/bottons/Gold/Normal.png", 400, 100);
+        label.setIcon(icon);
+        label.setFont(LABEL_FONT);
+        label.setPreferredSize(new Dimension(icon.getIconWidth(),icon.getIconHeight())); // Ajuste o tamanho do JLabel
+        label.setForeground(LABEL_FOREGROUND_COLOR);
         label.setBorder(null);
         label.setOpaque(false); // Certifique-se de que o label seja transparente
+        label.setHorizontalTextPosition(SwingConstants.CENTER); // Texto centralizado horizontalmente
+        label.setVerticalTextPosition(SwingConstants.CENTER); // Texto centralizado verticalmente
     }
 }
