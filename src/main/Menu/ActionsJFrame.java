@@ -36,10 +36,10 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew, mp.getMenuMainPanel().BExit, 
             mp.getMenuOptionsGraphicsPanel().BBack, mp.getMenuOptionsKeyPanel().BBack,
-            mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,mp.getMenuOptionsSoundsPanel().BBack,
-            mp.getMenuMainPanel().BOptions, mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
+            mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack, mp.getMenuOptionsSoundsPanel().BBack,
+            mp.getMenuMainPanel().BOptions, mp.getMenuMainPanel().BCredits, mp.getMenuOptionsPanel().BOptionsKeys, 
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
             mp.getMenuOptionsPanel().BOptionsBack, creditsPanel.getBackButton()}) {
             button.addMouseListener(new MouseAdapter() {
@@ -65,47 +65,41 @@ public class ActionsJFrame extends JFrame implements ActionListener {
                     button.setIconTextGap(0);
                 }
             });
-            for (final JCheckBox checkBox : new JCheckBox[]{
-                mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, 
-                mp.getMenuOptionsGraphicsPanel().vSyncCheckBox}) {
-                checkBox.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        checkBox.setForeground(Color.GRAY);
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-                        checkBox.setForeground(new Color(170, 140, 177));
-                    }
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        if (checkBox.isSelected()) {
-                            checkBox.setIcon(size.resizeIcon("/res/item/checkButton.png", 200, 50));
-                        } else {         
-                        checkBox.setIcon(size.resizeIcon("/res/item/uncheckButton.png", 200, 50));
-                        checkBox.setIconTextGap(0);
-                        }
-                    }
-                });
-            }
         }
 
+        for (final JCheckBox checkBox : new JCheckBox[]{
+            mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, 
+            mp.getMenuOptionsGraphicsPanel().vSyncCheckBox}) {
+            checkBox.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    checkBox.setForeground(Color.GRAY);
+                }
 
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    checkBox.setForeground(new Color(170, 140, 177));
+                }
 
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    // No need to change icon here, it will be handled by the action listener
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    // No need to change icon here, it will be handled by the action listener
+                }
+            });
+        }
     }
 
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew, mp.getMenuMainPanel().BExit, 
             mp.getMenuOptionsGraphicsPanel().BBack, mp.getMenuOptionsKeyPanel().BBack,
             mp.getMenuMainPanel().BOptions, mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,
-            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits,mp.getMenuOptionsSoundsPanel().BBack,
+            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits, mp.getMenuOptionsSoundsPanel().BBack,
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
             mp.getMenuOptionsPanel().BOptionsBack, mp.getMenuCreditsPanel().getBackButton()}) {
             button.addActionListener(this);
@@ -170,6 +164,9 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().BBack) {
             cl.show(panel, "MenuOptions");
         } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox){
+            panel.revalidate();
+            panel.repaint();
+        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().vSyncCheckBox){
             panel.revalidate();
             panel.repaint();
         }

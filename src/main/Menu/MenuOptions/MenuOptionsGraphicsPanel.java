@@ -39,12 +39,13 @@ public class MenuOptionsGraphicsPanel extends JPanel {
     }
 
     protected void label() {
-        LFullScreen = new JLabel("Full Screen");
-        LVSync = new JLabel("VSync");
+        LFullScreen = new JLabel("FULL SCREEN");
+        LVSync = new JLabel("VSYNC");
     }
 
     protected void configureButtons() {
-        IconsMenuRender size = new IconsMenuRender(null, null, null, null, null, this, null);
+        IconsMenuRender size = new IconsMenuRender(null, null, 
+        null, null, null, this, null);
         size.SizeIconButton();
         size.SizeIconLabel();   
         size.SizeIconCheckBox();

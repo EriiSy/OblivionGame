@@ -24,9 +24,8 @@ public class IconsMenuRender {
     private static final int ICON_WIDTH = 200;
     private static final int ICON_HEIGHT = 50;
     private static final Color BUTTON_FOREGROUND_COLOR = new Color(170, 140, 177);
-    private static final Color LABEL_FOREGROUND_COLOR = new Color(Color.white.getRGB());
+    private static final Color LABEL_FOREGROUND_COLOR = new Color(170, 140, 177);
     private static final Font BUTTON_FONT = new Font("Monocraft", Font.BOLD, 20);
-    private static final Font LABEL_FONT = new Font("Monocraft", Font.BOLD, 40);
  
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
@@ -118,6 +117,11 @@ public class IconsMenuRender {
                 configureLabel(label);
             }
         }
+        if (mogp != null){
+            for (JLabel label : new JLabel[]{mogp.LFullScreen, mogp.LVSync}){
+                configureLabel(label);
+            }
+        }
         
     }
     @SuppressWarnings("unchecked")
@@ -136,19 +140,13 @@ public class IconsMenuRender {
     }
 
     private void configureCheckBox(JCheckBox checkBox) {
-        ImageIcon uncheckedIcon = resizeIcon("/res/item/uncheckButton.png", ICON_WIDTH, ICON_HEIGHT);
-        ImageIcon checkedIcon = resizeIcon("/res/item/checkButton.png", ICON_WIDTH, ICON_HEIGHT);
-
+        ImageIcon uncheckedIcon = resizeIcon("/res/item/uncheckButton.png", 64, 64);
+        ImageIcon checkedIcon = resizeIcon("/res/item/checkButton.png", 64, 64);
         checkBox.setIcon(uncheckedIcon);
         checkBox.setSelectedIcon(checkedIcon);
         checkBox.setBorderPainted(false);
         checkBox.setFocusPainted(false);
         checkBox.setContentAreaFilled(false);
-        checkBox.setForeground(BUTTON_FOREGROUND_COLOR);
-        checkBox.setFont(BUTTON_FONT);
-        checkBox.setVerticalAlignment(SwingConstants.CENTER);
-        checkBox.setHorizontalTextPosition(SwingConstants.CENTER);
-        checkBox.setVerticalTextPosition(SwingConstants.CENTER);
     }
 
     private void configureButton(JButton button) {
@@ -170,16 +168,14 @@ public class IconsMenuRender {
         
         textField.setFont(BUTTON_FONT);
         textField.setPreferredSize(new Dimension(200, 50)); // Ajuste o tamanho do JTextField
-        textField.setMinimumSize(new Dimension(200, 30));
-        textField.setMaximumSize(new Dimension(200, 30));
         textField.setForeground(BUTTON_FOREGROUND_COLOR);
         
     }
 
     private void configureLabel(JLabel label) {
-        ImageIcon icon = resizeIcon("/res/bottons/Gold/Normal.png", 400, 100);
+        ImageIcon icon = resizeIcon("/res/item/label.png", 200, 50);
         label.setIcon(icon);
-        label.setFont(LABEL_FONT);
+        label.setFont(BUTTON_FONT);
         label.setPreferredSize(new Dimension(icon.getIconWidth(),icon.getIconHeight())); // Ajuste o tamanho do JLabel
         label.setForeground(LABEL_FOREGROUND_COLOR);
         label.setBorder(null);
