@@ -2,6 +2,7 @@ package main.Menu.RenderIcons;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -61,7 +62,13 @@ public class IconsMenuRender {
     }
 
 
-
+    public void SizeIconCheckBox(){
+        if (mogp != null){
+            for (JCheckBox checkBox : new JCheckBox[]{mogp.fullScreenCheckBox, mogp.vSyncCheckBox}) {
+                configureCheckBox(checkBox);
+            }
+        }
+    }
     public void SizeIconButton() {
         if (mmp != null) {
             for (JButton button : new JButton[]{mmp.BStart, mmp.BNew,mmp.BCredits,mmp.BExit,mmp.BOptions}) {
@@ -113,7 +120,6 @@ public class IconsMenuRender {
         }
         
     }
-
     @SuppressWarnings("unchecked")
     public void SizeIconComboBox(){
         if (playerM != null){
@@ -127,6 +133,22 @@ public class IconsMenuRender {
         comboBox.setFont(BUTTON_FONT);
         comboBox.setPreferredSize(new Dimension(200, 50)); // Ajuste o tamanho do JComboBox
         comboBox.setForeground(BUTTON_FOREGROUND_COLOR);
+    }
+
+    private void configureCheckBox(JCheckBox checkBox) {
+        ImageIcon uncheckedIcon = resizeIcon("/res/item/uncheckButton.png", ICON_WIDTH, ICON_HEIGHT);
+        ImageIcon checkedIcon = resizeIcon("/res/item/checkButton.png", ICON_WIDTH, ICON_HEIGHT);
+
+        checkBox.setIcon(uncheckedIcon);
+        checkBox.setSelectedIcon(checkedIcon);
+        checkBox.setBorderPainted(false);
+        checkBox.setFocusPainted(false);
+        checkBox.setContentAreaFilled(false);
+        checkBox.setForeground(BUTTON_FOREGROUND_COLOR);
+        checkBox.setFont(BUTTON_FONT);
+        checkBox.setVerticalAlignment(SwingConstants.CENTER);
+        checkBox.setHorizontalTextPosition(SwingConstants.CENTER);
+        checkBox.setVerticalTextPosition(SwingConstants.CENTER);
     }
 
     private void configureButton(JButton button) {
