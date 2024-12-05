@@ -22,7 +22,7 @@ public class Player extends Entity {
         this.keyH = keyH;
         this.images = new PlayerImages();
         this.movement = new Movement();
-        this.normalAttack = new Attack(18);
+        this.normalAttack = new Attack(10);
         this.interaction = new Interact(30);
         this.spriteHandler = new SpriteHandler();
 
@@ -78,7 +78,14 @@ public class Player extends Entity {
 }
 
     private void handleAttack() {
-        if (keyH.JAttackPressed && !normalAttack.isAttacking()) {
+
+
+        if ("stopLeft".equals(direction) || "stopRight".equals(direction)) {
+            if (keyH.JAttackPressed && !normalAttack.isAttacking()) {
+                normalAttack.startAttack();
+                direction = movement.isMovingRight() ? "attackRight" : "attackLeft";
+            }
+        } else if (keyH.JAttackPressed && !normalAttack.isAttacking()) {
             normalAttack.startAttack();
             if (keyH.rightPressed) {
                 direction = "attackRight";
@@ -208,7 +215,7 @@ public class Player extends Entity {
         spriteHandler.updateSpriteCounter(5, 7); // Velocidade média para a animação padrão
         spriteHandler.updateRunSpriteCounter(3, 6); // Velocidade rápida para a animação de corrida
         spriteHandler.updateJumpSpriteCounter(5, 6); // Velocidade média para a animação de pulo
-        spriteHandler.updateAttackSpriteCounter(5, 4); // Velocidade rápida para a animação de segundo ataque
+        spriteHandler.updateAttackSpriteCounter(10, 4); // Velocidade rápida para a animação de segundo ataque
         spriteHandler.updateInteractSpriteCounter(20, 4); // Velocidade rápida para a animação de ataque
         spriteHandler.updateStopSpriteCounter(25, 4); // Velocidade lenta para a animação de parada
     }

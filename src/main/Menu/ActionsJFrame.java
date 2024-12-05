@@ -22,7 +22,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     public ActionsJFrame(JPanel panel, MenuPanel mp) {
         this.panel = panel; // Certifica-se de que é o painel correto
         this.mp = mp;
-        this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(),mp.getMenuCreditsPanel());
+        this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(),
+        mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel());
         this.creditsPanel = new MenuCreditsPanel(); // Inicializa o painel de créditos
 
         // Acredito que sirva para redimensionar a qualquer tela adaptavelmente.
@@ -34,8 +35,9 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions, 
-            mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,
+            mp.getMenuMainPanel().BOptions, mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
             mp.getMenuOptionsPanel().BOptionsBack, creditsPanel.getBackButton()}) {
             button.addMouseListener(new MouseAdapter() {
@@ -66,7 +68,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BExit, mp.getMenuMainPanel().BOptions,
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuMainPanel().BOptions, mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,
             mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits,
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
             mp.getMenuOptionsPanel().BOptionsBack, mp.getMenuCreditsPanel().getBackButton()}) {
@@ -83,27 +86,37 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         CardLayout cl = (CardLayout) panel.getLayout();
+        
         if (e.getSource() == mp.getMenuMainPanel().BStart) {
             game.gameStartThread();
-        } else if (e.getSource() == mp.getMenuMainPanel().BExit) {
+
+        } if (e.getSource() == mp.getMenuMainPanel().BNew){
+            cl.show(panel, "MenuPlayer");
+            panel.revalidate();
+            panel.repaint();
+        } if (e.getSource() == mp.getMenuMainPanel().BExit) {
             System.exit(0);
-        } else if (e.getSource() == mp.getMenuMainPanel().BOptions) {
+        } if (e.getSource() == mp.getMenuMainPanel().BOptions) {
             System.out.println("Botão clicado: " + ((JButton)e.getSource()).getText());
             cl.show(panel, "MenuOptions");
             panel.revalidate();
             panel.repaint();
-
-        }else if (e.getSource() == mp.getMenuMainPanel().BCredits){
+        } if (e.getSource() == mp.getMenuMainPanel().BCredits){
             cl.show(panel, "MenuCredits");
             panel.revalidate();
             panel.repaint();
-
-        }else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsBack) {
+        } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsBack) {
             cl.show(panel, "MenuMain");
-        } else if (e.getSource() == mp.getMenuCreditsPanel().getBackButton()) {
+        } if (e.getSource() == mp.getMenuCreditsPanel().getBackButton()) {
             cl.show(panel, "MenuMain");
-        } else if (e.getSource() == mp.getMenuOptionsPanel().BOptionsSounds) {
+        } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsSounds) {
             cl.show(panel, "MenuOptionsSounds");
+        } if (e.getSource() == mp.getMenuPlayerPanel().BBack) {
+            cl.show(panel, "MenuMain");
+            panel.revalidate(); 
+            panel.repaint();
+        } if (e.getSource() == mp.getMenuPlayerPanel().BStart) {
+            game.gameStartThread();
         }
     }
 }
