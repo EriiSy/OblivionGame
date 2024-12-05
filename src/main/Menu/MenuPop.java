@@ -13,42 +13,34 @@ import main.Main;
 public class MenuPop {
 
     private JFrame frame;
-    private JButton openPopupButton;
+    private JButton openPopupButton; 
 
-    // Construtor para inicializar a interface do usuário
+    // Método para configurar a interface do usuário
     public MenuPop() {
         initializeUI();
     }
-
-    // Método para configurar a interface do usuário
+    
     @SuppressWarnings("unused")
     private void initializeUI() {
-        // Botão para abrir o pop-up
-        openPopupButton = new JButton("Abrir Pop-up");
-        openPopupButton.addActionListener(e -> showPopup());
-
+        
         // Configuração da janela principal
         frame = new JFrame("Exemplo de Pop-up");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
         frame.setLocationRelativeTo(null); // Centraliza a janela principal
-        frame.add(openPopupButton);
 
         // Set the icon image
         URL iconURL = Main.class.getResource("/res/icons/Logo.png");
         if (iconURL != null) {
             frame.setIconImage(new ImageIcon(iconURL).getImage());
         }
-
-        frame.setVisible(true);
     }
 
     // Método que exibe o pop-up
     @SuppressWarnings("unused")
-    public static void showPopup() {
+    public void showPopup() {
         // Botão "Entendi"
         JButton okButton = new JButton("Entendi");
-
         // Texto centralizado
         JLabel messageLabel = new JLabel("TUTORIAL\n", JLabel.CENTER);
 
