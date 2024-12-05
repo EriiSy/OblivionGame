@@ -18,7 +18,7 @@ public class MenuPop {
     public MenuPop() {
         initializeUI();
     }
-    
+
     @SuppressWarnings("unused")
     private void initializeUI() {
         
@@ -41,7 +41,7 @@ public class MenuPop {
         // Botão "Entendi"
         JButton okButton = new JButton("Entendi");
         // Texto centralizado
-        JLabel messageLabel = new JLabel("TUTORIAL\n", JLabel.CENTER);
+        JLabel messageLabel = new JLabel("<html>TUTORIAL<br><br>Space - Pular<br>W - Pular<br>A - Esquerda<br>S - Descer<br>D - Direita</html>", JLabel.CENTER);
 
         // Painel configurado com GridBagLayout
         JPanel panel = new JPanel(new GridBagLayout());
@@ -51,10 +51,13 @@ public class MenuPop {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
         panel.add(messageLabel, gbc);
 
         // Adiciona o botão ao painel
         gbc.gridy = 1;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 0); // 10 pixels a cima da borda
+        gbc.anchor = GridBagConstraints.SOUTH;
         panel.add(okButton, gbc);
 
         // Set the icon image
