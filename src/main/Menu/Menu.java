@@ -1,6 +1,9 @@
 package main.Menu;
 
 import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import main.Main;
 import main.WindowGame;
 import main.Menu.RenderIcons.*;
@@ -9,23 +12,34 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
 import java.net.URL;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.CardLayout;
+import java.awt.Toolkit;
 
 public class Menu extends JFrame {
-    final int screenWidth = 1920;
-    final int screenHeight = 1080;
+
     private JPanel panel = new JPanel(new CardLayout());
     WindowGame game = new WindowGame();
     MenuPanel mp = new MenuPanel();
     ActionsJFrame actions = new ActionsJFrame(panel, mp);
 
     IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(), 
-    mp.getMenuCreditsPanel());
+    mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel(), mp.getMenuOptionsSoundsPanel(),
+    mp.getMenuOptionsGraphicsPanel(), mp.getMenuOptionsKeyPanel());
+
+    public static final URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
+    public static final Image backgroundImage = new ImageIcon(backgroundURL).getImage();
+    public int screenHeight;
+    public int screenWidth;
 
     public Menu() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.screenHeight = screenSize.height;
+        this.screenWidth = screenSize.width;
         this.setSize(screenWidth, screenHeight);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
@@ -34,6 +48,22 @@ public class Menu extends JFrame {
         if (iconURL != null) {
             this.setIconImage(new ImageIcon(iconURL).getImage());
         }
+
+         // Add JMenu to the frame
+         JMenuBar menuBar = new JMenuBar();
+         JMenu helpMenu = new JMenu("Ajuda");
+         JMenuItem helpItem = new JMenuItem("Tutorial");
+         helpItem.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 MenuPop menuPop = new MenuPop();
+                 menuPop.showPopup();
+             }
+         });
+ 
+         helpMenu.add(helpItem);
+         menuBar.add(helpMenu);
+         this.setJMenuBar(menuBar); 
     }
 
     public void startMenu() {
@@ -42,15 +72,12 @@ public class Menu extends JFrame {
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
-        URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
         if (backgroundURL != null) {
-            ImageIcon backgroundImageIcon = new ImageIcon(backgroundURL);
-            Image backgroundImage = backgroundImageIcon.getImage();
             JLabel background = new JLabel() {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                    g.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, this);
                 }
             };
             background.setBounds(0, 0, screenWidth, screenHeight);
@@ -63,7 +90,11 @@ public class Menu extends JFrame {
         panel.setOpaque(false); // Certifica que o painel é transparente
 
         panel.add(mp.getMenuMainPanel(), "MenuMain");
+        panel.add(mp.getMenuPlayerPanel(), "MenuPlayer");
         panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
+        panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");
+        panel.add(mp.getMenuOptionsGraphicsPanel(), "MenuOptionsGraphics");
+        panel.add(mp.getMenuOptionsKeyPanel(), "MenuOptionsKeys");
         panel.add(mp.getMenuCreditsPanel(), "MenuCredits");
         panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");
 
