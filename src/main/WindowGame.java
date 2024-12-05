@@ -31,7 +31,8 @@ public class WindowGame extends JFrame {
         JMenu helpMenu = new JMenu("Ajuda");
         JMenuItem helpItem = new JMenuItem("Tutorial");
 
-        helpItem.addActionListener(e -> MenuPop.showPopup());
+        MenuPop menuPop = new MenuPop();
+        helpItem.addActionListener(e -> menuPop.showPopup());
 
         helpMenu.add(helpItem);
         menuBar.add(helpMenu);

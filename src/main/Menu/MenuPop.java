@@ -13,7 +13,6 @@ import main.Main;
 public class MenuPop {
 
     private JFrame frame;
-    private JButton openPopupButton; 
 
     // Método para configurar a interface do usuário
     public MenuPop() {

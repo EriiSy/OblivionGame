@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
