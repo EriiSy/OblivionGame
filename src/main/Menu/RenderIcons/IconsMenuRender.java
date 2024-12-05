@@ -67,6 +67,11 @@ public class IconsMenuRender {
                 configureCheckBox(checkBox);
             }
         }
+        if (mosp != null){
+            for (JCheckBox checkBox : new JCheckBox[]{mosp.gameSoundCheckBox, mosp.musicSoundCheckBox}) {
+                configureCheckBox(checkBox);
+            }
+        }
     }
     public void SizeIconButton() {
         if (mmp != null) {
@@ -119,6 +124,11 @@ public class IconsMenuRender {
         }
         if (mogp != null){
             for (JLabel label : new JLabel[]{mogp.LFullScreen, mogp.LVSync}){
+                configureLabel(label);
+            }
+        }
+        if (mosp != null){
+            for (JLabel label : new JLabel[]{mosp.lSound, mosp.lMusic}){
                 configureLabel(label);
             }
         }

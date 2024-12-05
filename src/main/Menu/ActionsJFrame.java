@@ -69,7 +69,9 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
         for (final JCheckBox checkBox : new JCheckBox[]{
             mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, 
-            mp.getMenuOptionsGraphicsPanel().vSyncCheckBox}) {
+            mp.getMenuOptionsGraphicsPanel().vSyncCheckBox, 
+            mp.getMenuOptionsSoundsPanel().musicSoundCheckBox,
+            mp.getMenuOptionsSoundsPanel().gameSoundCheckBox}) {
             checkBox.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -83,12 +85,11 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    // No need to change icon here, it will be handled by the action listener
                 }
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    // No need to change icon here, it will be handled by the action listener
+                   
                 }
             });
         }
@@ -106,7 +107,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         }
 
         for(final JCheckBox checkBox : new JCheckBox[]{
-            mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, mp.getMenuOptionsGraphicsPanel().vSyncCheckBox}) {
+            mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, mp.getMenuOptionsGraphicsPanel().vSyncCheckBox,
+            mp.getMenuOptionsSoundsPanel().musicSoundCheckBox, mp.getMenuOptionsSoundsPanel().gameSoundCheckBox}) {
             checkBox.addActionListener(this);
         }
     }
@@ -163,12 +165,13 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             cl.show(panel, "MenuOptions");
         } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().BBack) {
             cl.show(panel, "MenuOptions");
-        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox){
+        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox
+        || e.getSource() == mp.getMenuOptionsGraphicsPanel().vSyncCheckBox
+        || e.getSource() == mp.getMenuOptionsSoundsPanel().gameSoundCheckBox
+        || e.getSource() == mp.getMenuOptionsSoundsPanel().musicSoundCheckBox) {
             panel.revalidate();
             panel.repaint();
-        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().vSyncCheckBox){
-            panel.revalidate();
-            panel.repaint();
-        }
+        } 
+
     }
 }
