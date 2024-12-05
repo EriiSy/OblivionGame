@@ -1,6 +1,9 @@
 package main.Menu;
 
 import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import main.Main;
 import main.WindowGame;
 import main.Menu.RenderIcons.*;
@@ -9,6 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
 import java.net.URL;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -42,6 +47,22 @@ public class Menu extends JFrame {
         if (iconURL != null) {
             this.setIconImage(new ImageIcon(iconURL).getImage());
         }
+
+         // Add JMenu to the frame
+         JMenuBar menuBar = new JMenuBar();
+         JMenu helpMenu = new JMenu("Ajuda");
+         JMenuItem helpItem = new JMenuItem("Tutorial");
+         helpItem.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 MenuPop menuPop = new MenuPop();
+                 menuPop.showPopup();
+             }
+         });
+ 
+         helpMenu.add(helpItem);
+         menuBar.add(helpMenu);
+         this.setJMenuBar(menuBar); 
     }
 
     public void startMenu() {
