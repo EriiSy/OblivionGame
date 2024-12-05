@@ -53,7 +53,7 @@ public class MenuPlayerPanel extends JPanel {
     }
 
     protected void config() {
-        IconsMenuRender size = new IconsMenuRender(null, null, null, this);
+        IconsMenuRender size = new IconsMenuRender(null, null, null, this, null);
         size.SizeIconLabel();
         size.SizeIconTextField();
         size.SizeIconComboBox();

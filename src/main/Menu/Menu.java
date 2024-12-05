@@ -28,7 +28,7 @@ public class Menu extends JFrame {
     ActionsJFrame actions = new ActionsJFrame(panel, mp);
 
     IconsMenuRender size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(), 
-    mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel());
+    mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel(), mp.getMenuOptionsSoundsPanel());
 
     public static final URL backgroundURL = Main.class.getResource("/res/backgrounds/OblivionSoulsStart.jpg");
     public static final Image backgroundImage = new ImageIcon(backgroundURL).getImage();
@@ -91,6 +91,7 @@ public class Menu extends JFrame {
         panel.add(mp.getMenuMainPanel(), "MenuMain");
         panel.add(mp.getMenuPlayerPanel(), "MenuPlayer");
         panel.add(mp.getMenuOptionsPanel(), "MenuOptions");
+        panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");
         panel.add(mp.getMenuCreditsPanel(), "MenuCredits");
         panel.add(mp.getMenuOptionsSoundsPanel(), "MenuOptionsSounds");
 

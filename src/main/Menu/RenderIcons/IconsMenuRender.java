@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import main.Menu.MenuMainPanel;
 import main.Menu.MenuOptionsPanel;
+import main.Menu.MenuOptions.MenuOptionsSoundsPanel;
 import main.Menu.MenuPlayer.MenuPlayerPanel;
 import main.Menu.MenuCreditsPanel;
 import java.awt.Color;
@@ -27,6 +28,7 @@ public class IconsMenuRender {
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
     MenuCreditsPanel mcp;
+    MenuOptionsSoundsPanel mosp;
     MenuPlayerPanel playerM; 
 
 
@@ -43,11 +45,13 @@ public class IconsMenuRender {
         return new ImageIcon(resizedImg);
     }
 
-    public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop, MenuCreditsPanel mcp, MenuPlayerPanel playerM) {
+    public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop,MenuCreditsPanel mcp, MenuPlayerPanel playerM
+    , MenuOptionsSoundsPanel mosp) {
         this.mmp = mmp;
         this.mop = mop;
         this.mcp = mcp;
         this.playerM = playerM;
+        this.mosp = mosp;
     }
 
     public void SizeIconButton() {
@@ -61,6 +65,10 @@ public class IconsMenuRender {
                 mop.BOptionsBack}) {
                 configureButton(button);
             }
+        }
+
+        if (mosp != null){
+            configureButton(mosp.BBack);
         }
 
         if (playerM != null) {

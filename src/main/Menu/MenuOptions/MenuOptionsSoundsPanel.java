@@ -6,66 +6,78 @@ import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
 
 import main.Menu.ConfigMenu;
+import main.Menu.RenderIcons.IconsMenuRender;
 
 import javax.swing.ButtonGroup;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.BorderFactory;
 
 public class MenuOptionsSoundsPanel extends JPanel {
 
     JButton BOptionsSounds;
     JCheckBox gameSoundCheckBox, musicSoundCheckBox;
     JRadioButton portugueseRadioButton, englishRadioButton, spanishRadioButton;
+    public JButton BBack; 
     ButtonGroup languageGroup;
     ConfigMenu layout = new ConfigMenu();
-    GridBagConstraints gbc = new GridBagConstraints();
 
     public MenuOptionsSoundsPanel() {
         this.setLayout(new GridBagLayout());
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
+        this.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
+        checkBox();
+        radioButton();
+        buttonGroup();
+        Buttons();
+        this.setOpaque(false);
+        configureButtons();
+        addComponents();
     }
 
-    protected void CheckBox() {
+    protected void Buttons() {
+        BBack = new JButton("BACK");
+    }
+
+    protected void checkBox() {
         gameSoundCheckBox = new JCheckBox("Habilitar Som do Jogo");
         musicSoundCheckBox = new JCheckBox("Habilitar Som da Música");
     }
 
-    protected void addCheckBox() {
-        gbc.gridy++;
-        this.add(gameSoundCheckBox);
-        this.add(musicSoundCheckBox);
-    }
-
-    protected void RadioButton() {
+    protected void radioButton() {
         portugueseRadioButton = new JRadioButton("Português");
         englishRadioButton = new JRadioButton("Inglês");
         spanishRadioButton = new JRadioButton("Espanhol");
     }
 
-    protected void addRadioButton() {
-        this.add(portugueseRadioButton);
-        this.add(englishRadioButton);
-        this.add(spanishRadioButton);
-    }
-
-    protected void ButtonGroup() {
+    protected void buttonGroup() {
         languageGroup = new ButtonGroup();
         languageGroup.add(portugueseRadioButton);
         languageGroup.add(englishRadioButton);
         languageGroup.add(spanishRadioButton);
     }
-
-    protected void addButtons() {
-        gbc.gridy++;
-        this.add(gameSoundCheckBox, gbc);
-        this.add(musicSoundCheckBox);
-        this.add(portugueseRadioButton);
-        this.add(englishRadioButton);
-        this.add(spanishRadioButton);
+    
+    protected void configureButtons() {
+        IconsMenuRender size = new IconsMenuRender(null, null, null, null, this);
+        size.SizeIconButton();
     }
 
+    protected void addComponents() {
+        GridBagConstraints gbc = layout.createGridBagConstraints(0, 0);
+        this.add(gameSoundCheckBox, gbc);
+
+        gbc = layout.createGridBagConstraints(0, 1);
+        this.add(musicSoundCheckBox, gbc);
+
+        gbc = layout.createGridBagConstraints(0, 2);
+        this.add(portugueseRadioButton, gbc);
+
+        gbc = layout.createGridBagConstraints(0, 3);
+        this.add(englishRadioButton, gbc);
+
+        gbc = layout.createGridBagConstraints(0, 4);
+        this.add(spanishRadioButton, gbc);
+
+        gbc = layout.createGridBagConstraints(0, 5);
+        this.add(BBack, gbc);
+    }
 }
