@@ -2,6 +2,7 @@ package main.Menu.RenderIcons;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -22,12 +23,12 @@ public class IconsMenuRender {
     private static final Color LABEL_FOREGROUND_COLOR = new Color(Color.white.getRGB());
     private static final Font BUTTON_FONT = new Font("Monocraft", Font.BOLD, 20);
     private static final Font LABEL_FONT = new Font("Monocraft", Font.BOLD, 40);
-    private static final int LABEL_ICON_WIDTH = 400;
-    private static final int LABEL_ICON_HEIGHT = 100;
+ 
     MenuMainPanel mmp;
     MenuOptionsPanel mop;
     MenuCreditsPanel mcp;
     MenuPlayerPanel playerM; 
+
 
     public ImageIcon resizeIcon(String path, int width, int height) {
         URL resource = getClass().getResource(path);
@@ -49,7 +50,7 @@ public class IconsMenuRender {
         this.playerM = playerM;
     }
 
-    public void SizeIconBotton() {
+    public void SizeIconButton() {
         if (mmp != null) {
             for (JButton button : new JButton[]{mmp.BStart, mmp.BNew,mmp.BCredits,mmp.BExit,mmp.BOptions}) {
                 configureButton(button);
@@ -58,6 +59,12 @@ public class IconsMenuRender {
         if (mop != null) {
             for (JButton button : new JButton[]{mop.BOptionsKeys, mop.BOptionsSounds, mop.BOptionsGraphics, 
                 mop.BOptionsBack}) {
+                configureButton(button);
+            }
+        }
+
+        if (playerM != null) {
+            for (JButton button : new JButton[]{playerM.BBack, playerM.BStart}) {
                 configureButton(button);
             }
         }
@@ -73,10 +80,25 @@ public class IconsMenuRender {
     }
     public void SizeIconLabel(){
         if (playerM != null){
-            for (JLabel label : new JLabel[]{playerM.lbNick}){
+            for (JLabel label : new JLabel[]{playerM.lbNick, playerM.lbDifficulty}){
                 configureLabel(label);
             }
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void SizeIconComboBox(){
+        if (playerM != null){
+            for (JComboBox<String> comboBox : new JComboBox[]{playerM.difficultyComboBox}){
+                configureComboBox(comboBox);
+            }
+        }
+    }
+
+    private void configureComboBox(JComboBox<String> comboBox) {
+        comboBox.setFont(BUTTON_FONT);
+        comboBox.setPreferredSize(new Dimension(200, 50)); // Ajuste o tamanho do JComboBox
+        comboBox.setForeground(BUTTON_FOREGROUND_COLOR);
     }
 
     private void configureButton(JButton button) {

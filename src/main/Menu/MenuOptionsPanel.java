@@ -30,7 +30,7 @@ public class MenuOptionsPanel extends JPanel {
 
     protected void configureButtons() {
         IconsMenuRender size = new IconsMenuRender(null, this, null, null);
-        size.SizeIconBotton();
+        size.SizeIconButton();
     }
 
     protected void addButtons() {
