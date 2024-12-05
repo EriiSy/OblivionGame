@@ -12,10 +12,10 @@ public class Player extends Entity {
     PlayerImages images;
 
     private Movement movement;
-    private Attack normalAttack;
+    public Attack normalAttack;
     private Interact interaction;
     private SpriteHandler spriteHandler;
-    private final int size_Y = 610;
+    public final int size_Y = 511;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -211,7 +211,7 @@ public class Player extends Entity {
     }
     
 
-    private void updateSpriteCounters() {
+    protected void updateSpriteCounters() {
         spriteHandler.updateSpriteCounter(5, 7); // Velocidade média para a animação padrão
         spriteHandler.updateRunSpriteCounter(3, 6); // Velocidade rápida para a animação de corrida
         spriteHandler.updateJumpSpriteCounter(5, 6); // Velocidade média para a animação de pulo

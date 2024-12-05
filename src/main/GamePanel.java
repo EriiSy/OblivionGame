@@ -1,6 +1,6 @@
 package main;
 
-import entity.Player;
+import entity.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +28,9 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
+    NPC npc;
     Image combinedBackgroundImage;
+    Collision collision = new Collision(this);
 
     public GamePanel() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,6 +56,8 @@ public class GamePanel extends JPanel implements Runnable {
             g.drawImage(mainBackgroundImage, 0, 0, screenWidth, screenHeight, null);
             g.dispose();
         }
+
+        npc = new NPC(this, keyH); // Inicializa o NPC
     }
 
     public void startGameThread() {
@@ -89,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {  // método de atualização de quadros dos personagens
         player.update();
+        npc.update();
+        collision.handleCollisions(player, new NPC[]{npc});
     }
 
     @Override
@@ -104,6 +110,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Desenha o jogador
         player.draw(g2);
+
+        // Desenha o NPC
+        npc.draw(g2);
 
         g2.dispose(); // Descarta esse contexto gráfico e libere quaisquer recursos do sistema que ele esteja usando.
     }
