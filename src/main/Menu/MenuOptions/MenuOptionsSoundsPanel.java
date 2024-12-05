@@ -57,7 +57,8 @@ public class MenuOptionsSoundsPanel extends JPanel {
     }
     
     protected void configureButtons() {
-        IconsMenuRender size = new IconsMenuRender(null, null, null, null, this);
+        IconsMenuRender size = new IconsMenuRender(null, null, null, null, 
+        this, null, null);
         size.SizeIconButton();
     }
 

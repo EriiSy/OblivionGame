@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import main.Menu.MenuMainPanel;
 import main.Menu.MenuOptionsPanel;
+import main.Menu.MenuOptions.MenuOptionsGraphicsPanel;
+import main.Menu.MenuOptions.MenuOptionsKeyPanel;
 import main.Menu.MenuOptions.MenuOptionsSoundsPanel;
 import main.Menu.MenuPlayer.MenuPlayerPanel;
 import main.Menu.MenuCreditsPanel;
@@ -29,6 +31,8 @@ public class IconsMenuRender {
     MenuOptionsPanel mop;
     MenuCreditsPanel mcp;
     MenuOptionsSoundsPanel mosp;
+    MenuOptionsKeyPanel mokp;
+    MenuOptionsGraphicsPanel mogp;
     MenuPlayerPanel playerM; 
 
 
@@ -46,13 +50,17 @@ public class IconsMenuRender {
     }
 
     public IconsMenuRender(MenuMainPanel mmp, MenuOptionsPanel mop,MenuCreditsPanel mcp, MenuPlayerPanel playerM
-    , MenuOptionsSoundsPanel mosp) {
+    , MenuOptionsSoundsPanel mosp, MenuOptionsGraphicsPanel mogp, MenuOptionsKeyPanel mokp) {
         this.mmp = mmp;
         this.mop = mop;
         this.mcp = mcp;
         this.playerM = playerM;
         this.mosp = mosp;
+        this.mogp = mogp;
+        this.mokp = mokp;
     }
+
+
 
     public void SizeIconButton() {
         if (mmp != null) {
@@ -70,6 +78,12 @@ public class IconsMenuRender {
         if (mosp != null){
             configureButton(mosp.BBack);
         }
+        if (mokp != null){
+            configureButton(mokp.BBack);
+        }
+        if (mogp != null){
+            configureButton(mogp.BBack);
+        }
 
         if (playerM != null) {
             for (JButton button : new JButton[]{playerM.BBack, playerM.BStart}) {
@@ -77,7 +91,6 @@ public class IconsMenuRender {
             }
         }
     }
-
     public void SizeIconTextField(){
         if (playerM != null){
             for (JTextField textField : new JTextField[]{playerM.tfNick}){
@@ -92,6 +105,13 @@ public class IconsMenuRender {
                 configureLabel(label);
             }
         }
+        if (mokp != null){
+            for (JLabel label : new JLabel[]{mokp.upKeyLabel,
+                 mokp.downKeyLabel, mokp.leftKeyLabel, mokp.rightKeyLabel}){
+                configureLabel(label);
+            }
+        }
+        
     }
 
     @SuppressWarnings("unchecked")

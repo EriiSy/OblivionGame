@@ -23,7 +23,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         this.panel = panel; // Certifica-se de que é o painel correto
         this.mp = mp;
         this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(),
-        mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel(), mp.getMenuOptionsSoundsPanel());
+        mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel(), mp.getMenuOptionsSoundsPanel(),
+        mp.getMenuOptionsGraphicsPanel(), mp.getMenuOptionsKeyPanel());
         this.creditsPanel = new MenuCreditsPanel(); // Inicializa o painel de créditos
 
         // Acredito que sirva para redimensionar a qualquer tela adaptavelmente.
@@ -36,6 +37,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
             mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuOptionsGraphicsPanel().BBack, mp.getMenuOptionsKeyPanel().BBack,
             mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,mp.getMenuOptionsSoundsPanel().BBack,
             mp.getMenuMainPanel().BOptions, mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
@@ -69,6 +71,7 @@ public class ActionsJFrame extends JFrame implements ActionListener {
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{
             mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuOptionsGraphicsPanel().BBack, mp.getMenuOptionsKeyPanel().BBack,
             mp.getMenuMainPanel().BOptions, mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,
             mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits,mp.getMenuOptionsSoundsPanel().BBack,
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
@@ -111,13 +114,21 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             cl.show(panel, "MenuMain");
         } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsSounds) {
             cl.show(panel, "MenuOptionsSounds");
-        } if (e.getSource() == mp.getMenuPlayerPanel().BBack) {
+        } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsGraphics) {
+            cl.show(panel, "MenuOptionsGraphics");
+        } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsKeys) {
+            cl.show(panel, "MenuOptionsKeys");
+        }if (e.getSource() == mp.getMenuPlayerPanel().BBack) {
             cl.show(panel, "MenuMain");
             panel.revalidate(); 
             panel.repaint();
         } if (e.getSource() == mp.getMenuPlayerPanel().BStart) {
             game.gameStartThread();
         } if (e.getSource() == mp.getMenuOptionsSoundsPanel().BBack) {
+            cl.show(panel, "MenuOptions");
+        } if (e.getSource() == mp.getMenuOptionsKeyPanel().BBack) {
+            cl.show(panel, "MenuOptions");
+        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().BBack) {
             cl.show(panel, "MenuOptions");
         }
     }
