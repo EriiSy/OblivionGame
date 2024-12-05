@@ -38,6 +38,7 @@ public class SpriteAnimation extends JPanel {
         g.drawImage(spritesheet, 0, 0, frameWidth, frameHeight, x, 0, x + frameWidth, frameHeight, this);
     }
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         SpriteAnimation panel = new SpriteAnimation();

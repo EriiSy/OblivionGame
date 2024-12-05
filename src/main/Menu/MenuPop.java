@@ -20,6 +20,7 @@ public class MenuPop {
     }
 
     @SuppressWarnings("unused")
+    
     private void initializeUI() {
         
         // Configuração da janela principal

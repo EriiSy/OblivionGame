@@ -23,7 +23,8 @@ public class ActionsJFrame extends JFrame implements ActionListener {
         this.panel = panel; // Certifica-se de que é o painel correto
         this.mp = mp;
         this.size = new IconsMenuRender(mp.getMenuMainPanel(), mp.getMenuOptionsPanel(),
-        mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel());
+        mp.getMenuCreditsPanel(), mp.getMenuPlayerPanel(), mp.getMenuOptionsSoundsPanel(),
+        mp.getMenuOptionsGraphicsPanel(), mp.getMenuOptionsKeyPanel());
         this.creditsPanel = new MenuCreditsPanel(); // Inicializa o painel de créditos
 
         // Acredito que sirva para redimensionar a qualquer tela adaptavelmente.
@@ -35,9 +36,10 @@ public class ActionsJFrame extends JFrame implements ActionListener {
 
     protected void ButtonsMouseListener() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
-            mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,
-            mp.getMenuMainPanel().BOptions, mp.getMenuMainPanel().BCredits,mp.getMenuOptionsPanel().BOptionsKeys, 
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew, mp.getMenuMainPanel().BExit, 
+            mp.getMenuOptionsGraphicsPanel().BBack, mp.getMenuOptionsKeyPanel().BBack,
+            mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack, mp.getMenuOptionsSoundsPanel().BBack,
+            mp.getMenuMainPanel().BOptions, mp.getMenuMainPanel().BCredits, mp.getMenuOptionsPanel().BOptionsKeys, 
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
             mp.getMenuOptionsPanel().BOptionsBack, creditsPanel.getBackButton()}) {
             button.addMouseListener(new MouseAdapter() {
@@ -64,16 +66,50 @@ public class ActionsJFrame extends JFrame implements ActionListener {
                 }
             });
         }
+
+        for (final JCheckBox checkBox : new JCheckBox[]{
+            mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, 
+            mp.getMenuOptionsGraphicsPanel().vSyncCheckBox, 
+            mp.getMenuOptionsSoundsPanel().musicSoundCheckBox,
+            mp.getMenuOptionsSoundsPanel().gameSoundCheckBox}) {
+            checkBox.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    checkBox.setForeground(Color.GRAY);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    checkBox.setForeground(new Color(170, 140, 177));
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                   
+                }
+            });
+        }
     }
 
     protected void ActionListenerButtons() {
         for (final JButton button : new JButton[]{
-            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew,mp.getMenuMainPanel().BExit, 
+            mp.getMenuMainPanel().BStart, mp.getMenuMainPanel().BNew, mp.getMenuMainPanel().BExit, 
+            mp.getMenuOptionsGraphicsPanel().BBack, mp.getMenuOptionsKeyPanel().BBack,
             mp.getMenuMainPanel().BOptions, mp.getMenuPlayerPanel().BStart, mp.getMenuPlayerPanel().BBack,
-            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits,
+            mp.getMenuOptionsPanel().BOptionsKeys, mp.getMenuMainPanel().BCredits, mp.getMenuOptionsSoundsPanel().BBack,
             mp.getMenuOptionsPanel().BOptionsSounds, mp.getMenuOptionsPanel().BOptionsGraphics, 
             mp.getMenuOptionsPanel().BOptionsBack, mp.getMenuCreditsPanel().getBackButton()}) {
             button.addActionListener(this);
+        }
+
+        for(final JCheckBox checkBox : new JCheckBox[]{
+            mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox, mp.getMenuOptionsGraphicsPanel().vSyncCheckBox,
+            mp.getMenuOptionsSoundsPanel().musicSoundCheckBox, mp.getMenuOptionsSoundsPanel().gameSoundCheckBox}) {
+            checkBox.addActionListener(this);
         }
     }
 
@@ -111,12 +147,31 @@ public class ActionsJFrame extends JFrame implements ActionListener {
             cl.show(panel, "MenuMain");
         } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsSounds) {
             cl.show(panel, "MenuOptionsSounds");
-        } if (e.getSource() == mp.getMenuPlayerPanel().BBack) {
+        } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsGraphics) {
+            cl.show(panel, "MenuOptionsGraphics");
+            System.out.println("Botão clicado: " + ((JButton)e.getSource()).getText());
+        } if (e.getSource() == mp.getMenuOptionsPanel().BOptionsKeys) {
+            cl.show(panel, "MenuOptionsKeys");
+            System.out.println("Botão clicado: " + ((JButton)e.getSource()).getText());
+        }if (e.getSource() == mp.getMenuPlayerPanel().BBack) {
             cl.show(panel, "MenuMain");
             panel.revalidate(); 
             panel.repaint();
         } if (e.getSource() == mp.getMenuPlayerPanel().BStart) {
             game.gameStartThread();
-        }
+        } if (e.getSource() == mp.getMenuOptionsSoundsPanel().BBack) {
+            cl.show(panel, "MenuOptions");
+        } if (e.getSource() == mp.getMenuOptionsKeyPanel().BBack) {
+            cl.show(panel, "MenuOptions");
+        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().BBack) {
+            cl.show(panel, "MenuOptions");
+        } if (e.getSource() == mp.getMenuOptionsGraphicsPanel().fullScreenCheckBox
+        || e.getSource() == mp.getMenuOptionsGraphicsPanel().vSyncCheckBox
+        || e.getSource() == mp.getMenuOptionsSoundsPanel().gameSoundCheckBox
+        || e.getSource() == mp.getMenuOptionsSoundsPanel().musicSoundCheckBox) {
+            panel.revalidate();
+            panel.repaint();
+        } 
+
     }
 }
