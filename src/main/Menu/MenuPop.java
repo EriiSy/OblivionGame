@@ -42,7 +42,17 @@ public class MenuPop {
         // Botão "Entendi"
         JButton okButton = new JButton("Entendi");
         // Texto centralizado
-        JLabel messageLabel = new JLabel("<html>TUTORIAL<br><br>Space - Pular<br>W - Pular<br>A - Esquerda<br>S - Descer<br>D - Direita</html>", JLabel.CENTER);
+        JLabel messageLabel = new JLabel(
+            "<html>"+
+            "<h3>TUTORIAL</h3>"+
+            "<p>Space - Pular</p>"+
+            "<p>W - Pular</p>"+
+            "<p>A - Esquerda</p>"+
+            "<p>S - Descer</p>"+
+            "<p>D - Direita</p>"+
+            "<p>W - Reviver</p>"+
+            "<p>J - Ataque</p>"+
+            "</html>", JLabel.CENTER);
 
         // Painel configurado com GridBagLayout
         JPanel panel = new JPanel(new GridBagLayout());
