@@ -15,7 +15,7 @@ public class Player extends Entity {
     public Attack normalAttack;
     private Interact interaction;
     private SpriteHandler spriteHandler;
-    public final int size_Y = 511;
+    public final int size_Y = 611;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
